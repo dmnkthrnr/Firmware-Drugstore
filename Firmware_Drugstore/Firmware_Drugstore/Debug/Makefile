@@ -45,7 +45,9 @@ C_SRCS +=  \
 ../i2c.c \
 ../main.c \
 ../settings.c \
-../uart.c
+../time.c \
+../uart.c \
+../ui.c
 
 
 PREPROCESSING_SRCS += 
@@ -61,7 +63,9 @@ Device_Startup/system_samd21.o \
 i2c.o \
 main.o \
 settings.o \
-uart.o
+time.o \
+uart.o \
+ui.o
 
 OBJS_AS_ARGS +=  \
 AB1805.o \
@@ -70,7 +74,9 @@ Device_Startup/system_samd21.o \
 i2c.o \
 main.o \
 settings.o \
-uart.o
+time.o \
+uart.o \
+ui.o
 
 C_DEPS +=  \
 AB1805.d \
@@ -79,7 +85,9 @@ Device_Startup/system_samd21.d \
 i2c.d \
 main.d \
 settings.d \
-uart.d
+time.d \
+uart.d \
+ui.d
 
 C_DEPS_AS_ARGS +=  \
 AB1805.d \
@@ -88,7 +96,9 @@ Device_Startup/system_samd21.d \
 i2c.d \
 main.d \
 settings.d \
-uart.d
+time.d \
+uart.d \
+ui.d
 
 OUTPUT_FILE_PATH +=Firmware_Drugstore.elf
 
@@ -106,6 +116,10 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

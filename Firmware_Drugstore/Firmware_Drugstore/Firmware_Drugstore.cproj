@@ -165,7 +165,13 @@
     <Compile Include="Includes\settings.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Includes\time.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Includes\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Includes\ui.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -174,7 +180,13 @@
     <Compile Include="settings.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="time.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ui.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

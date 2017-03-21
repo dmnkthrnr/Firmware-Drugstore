@@ -14,5 +14,9 @@ main.c
 
 settings.c
 
+time.c
+
 uart.c
+
+ui.c
 

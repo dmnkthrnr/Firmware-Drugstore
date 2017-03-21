@@ -7,37 +7,37 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   1 .relocate     00000430  20000000  00000eb4  00020000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000080  20000430  000012e4  00020430  2**2
+  2 .bss          0000008c  20000430  000012e4  00020430  2**2
                   ALLOC
-  3 .stack        00002000  200004b0  00001364  00020430  2**0
+  3 .stack        00002004  200004bc  00001370  00020430  2**0
                   ALLOC
   4 .ARM.attributes 00000028  00000000  00000000  00020430  2**0
                   CONTENTS, READONLY
   5 .comment      00000059  00000000  00000000  00020458  2**0
                   CONTENTS, READONLY
-  6 .debug_info   0000bcfe  00000000  00000000  000204b1  2**0
+  6 .debug_info   0000bf8a  00000000  00000000  000204b1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000a92  00000000  00000000  0002c1af  2**0
+  7 .debug_abbrev 00000a92  00000000  00000000  0002c43b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    00000ed5  00000000  00000000  0002cc41  2**0
+  8 .debug_loc    00000ed5  00000000  00000000  0002cecd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 00000248  00000000  00000000  0002db16  2**0
+  9 .debug_aranges 00000248  00000000  00000000  0002dda2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000001d8  00000000  00000000  0002dd5e  2**0
+ 10 .debug_ranges 000001d8  00000000  00000000  0002dfea  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_macro  0001272c  00000000  00000000  0002df36  2**0
+ 11 .debug_macro  00012782  00000000  00000000  0002e1c2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   0000349b  00000000  00000000  00040662  2**0
+ 12 .debug_line   0000349b  00000000  00000000  00040944  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    0007061c  00000000  00000000  00043afd  2**0
+ 13 .debug_str    0007070e  00000000  00000000  00043ddf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  00000678  00000000  00000000  000b411c  2**2
+ 14 .debug_frame  00000678  00000000  00000000  000b44f0  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <_sfixed>:
-   0:	200024b0 	.word	0x200024b0
+   0:	200024c0 	.word	0x200024c0
    4:	0000047d 	.word	0x0000047d
    8:	00000479 	.word	0x00000479
    c:	00000479 	.word	0x00000479
@@ -148,9 +148,9 @@ uint8_t read_rtc_register(const uint8_t rtc_register)
  12c:	7820      	ldrb	r0, [r4, #0]
 }
  12e:	bd10      	pop	{r4, pc}
- 130:	20000474 	.word	0x20000474
+ 130:	2000047c 	.word	0x2000047c
  134:	000005dd 	.word	0x000005dd
- 138:	20000454 	.word	0x20000454
+ 138:	2000045c 	.word	0x2000045c
  13c:	00000655 	.word	0x00000655
 
 00000140 <write_rtc_register>:
@@ -174,7 +174,7 @@ uint8_t write_rtc_register(const uint8_t rtc_register, const uint8_t data)
 }
  150:	2001      	movs	r0, #1
  152:	bd10      	pop	{r4, pc}
- 154:	20000474 	.word	0x20000474
+ 154:	2000047c 	.word	0x2000047c
  158:	000005dd 	.word	0x000005dd
 
 0000015c <InitAB1805>:
@@ -412,7 +412,7 @@ void set_second(const uint8_t value) {
  218:	bd10      	pop	{r4, pc}
  21a:	46c0      	nop			; (mov r8, r8)
  21c:	00000b2d 	.word	0x00000b2d
- 220:	200004ac 	.word	0x200004ac
+ 220:	200004b8 	.word	0x200004b8
  224:	00000141 	.word	0x00000141
 
 00000228 <set_minute>:
@@ -436,7 +436,7 @@ void set_minute(const uint8_t value) {
  240:	bd10      	pop	{r4, pc}
  242:	46c0      	nop			; (mov r8, r8)
  244:	00000b2d 	.word	0x00000b2d
- 248:	200004ab 	.word	0x200004ab
+ 248:	200004b7 	.word	0x200004b7
  24c:	00000141 	.word	0x00000141
 
 00000250 <set_hour>:
@@ -460,7 +460,7 @@ void set_hour(const uint8_t value) {
  268:	bd10      	pop	{r4, pc}
  26a:	46c0      	nop			; (mov r8, r8)
  26c:	00000b2d 	.word	0x00000b2d
- 270:	20000453 	.word	0x20000453
+ 270:	20000459 	.word	0x20000459
  274:	00000141 	.word	0x00000141
 
 00000278 <set_day>:
@@ -481,7 +481,7 @@ void set_day(const uint8_t value) {
 }
  28c:	bd10      	pop	{r4, pc}
  28e:	46c0      	nop			; (mov r8, r8)
- 290:	20000451 	.word	0x20000451
+ 290:	20000453 	.word	0x20000453
  294:	00000141 	.word	0x00000141
 
 00000298 <set_date>:
@@ -529,7 +529,7 @@ void set_month(const uint8_t value) {
  2d8:	bd10      	pop	{r4, pc}
  2da:	46c0      	nop			; (mov r8, r8)
  2dc:	00000b2d 	.word	0x00000b2d
- 2e0:	20000494 	.word	0x20000494
+ 2e0:	2000049c 	.word	0x2000049c
  2e4:	00000141 	.word	0x00000141
 
 000002e8 <set_year>:
@@ -751,18 +751,18 @@ void get_date_string(void)
  43e:	46c0      	nop			; (mov r8, r8)
  440:	000001c9 	.word	0x000001c9
  444:	2000044d 	.word	0x2000044d
- 448:	20000498 	.word	0x20000498
+ 448:	200004a0 	.word	0x200004a0
  44c:	000007d5 	.word	0x000007d5
  450:	000001dd 	.word	0x000001dd
- 454:	20000494 	.word	0x20000494
+ 454:	2000049c 	.word	0x2000049c
  458:	000001f1 	.word	0x000001f1
  45c:	2000044c 	.word	0x2000044c
  460:	000001b5 	.word	0x000001b5
- 464:	20000453 	.word	0x20000453
+ 464:	20000459 	.word	0x20000459
  468:	000001a1 	.word	0x000001a1
- 46c:	200004ab 	.word	0x200004ab
+ 46c:	200004b7 	.word	0x200004b7
  470:	0000018d 	.word	0x0000018d
- 474:	200004ac 	.word	0x200004ac
+ 474:	200004b8 	.word	0x200004b8
 
 00000478 <Dummy_Handler>:
 
@@ -942,7 +942,7 @@ void Reset_Handler(void)
  538:	20000000 	.word	0x20000000
  53c:	00000eb4 	.word	0x00000eb4
  540:	20000430 	.word	0x20000430
- 544:	200004b0 	.word	0x200004b0
+ 544:	200004bc 	.word	0x200004bc
  548:	20000430 	.word	0x20000430
  54c:	20000004 	.word	0x20000004
  550:	20000434 	.word	0x20000434
@@ -1291,7 +1291,7 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
  6da:	0152      	lsls	r2, r2, #5
  6dc:	4b12      	ldr	r3, [pc, #72]	; (728 <main+0x58>)
  6de:	601a      	str	r2, [r3, #0]
-	
+	//Das ist ein GithubTest
 	enable_interrupts();
 	
 	InitPorts();
@@ -1368,7 +1368,7 @@ int main(void)
  73c:	0000015d 	.word	0x0000015d
  740:	00000301 	.word	0x00000301
  744:	00000361 	.word	0x00000361
- 748:	20000498 	.word	0x20000498
+ 748:	200004a0 	.word	0x200004a0
  74c:	000009a5 	.word	0x000009a5
  750:	001e8480 	.word	0x001e8480
 
@@ -1972,10 +1972,10 @@ void SERCOM3_Handler()
  a0c:	701a      	strb	r2, [r3, #0]
 	}
  a0e:	4770      	bx	lr
- a10:	200004ad 	.word	0x200004ad
+ a10:	200004b9 	.word	0x200004b9
  a14:	42001400 	.word	0x42001400
- a18:	20000454 	.word	0x20000454
- a1c:	20000450 	.word	0x20000450
+ a18:	2000045c 	.word	0x2000045c
+ a1c:	20000452 	.word	0x20000452
 
 00000a20 <__aeabi_uidiv>:
  a20:	2200      	movs	r2, #0
