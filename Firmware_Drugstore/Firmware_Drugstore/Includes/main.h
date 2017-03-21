@@ -18,10 +18,30 @@
 
 uint8_t recievedata[30];
 uint8_t senddata[30];
-char DateString[17];// = {'x','x','.','x','x','.','x','x','/','x','x',':','x','x',':','x','x'};
+char DateString[17];
 
 volatile uint8_t new_data;	
 volatile uint8_t recieve_counter;
+
+//-----------------------------------------------------------------------------
+// Time Defines
+//-----------------------------------------------------------------------------
+uint16_t _10ms;
+uint16_t Sekunde;
+
+
+//-----------------------------------------------------------------------------
+// User Interface Defines 
+//-----------------------------------------------------------------------------
+#define TASTER_IF (!(PORT->Group[2].IN.reg & PORT_PA01))
+
+#define TA_SW0_NR 0
+#define TA_NONE   1
+
+#define TA_ANZ_MAX 1
+
+int16_t TaxCounter[TA_ANZ_MAX];
+uint8_t TaxState[TA_ANZ_MAX];
 
 
 //-----------------------------------------------------------------------------

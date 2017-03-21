@@ -28,10 +28,13 @@ Common symbol       size              file
 
 _year               0x1               AB1805.o
 _date               0x1               AB1805.o
+_10ms               0x2               AB1805.o
 _alarm_day          0x1               AB1805.o
 _alarm_hour         0x1               AB1805.o
 new_data            0x1               AB1805.o
 _day                0x1               AB1805.o
+TaxCounter          0x2               AB1805.o
+Sekunde             0x2               AB1805.o
 _alarm_date         0x1               AB1805.o
 _hour               0x1               AB1805.o
 recievedata         0x1e              AB1805.o
@@ -40,6 +43,7 @@ _alarm_month        0x1               AB1805.o
 _alarm_year         0x1               AB1805.o
 _month              0x1               AB1805.o
 DateString          0x11              AB1805.o
+TaxState            0x1               AB1805.o
 _alarm_seconds      0x1               AB1805.o
 _alarm_minutes      0x1               AB1805.o
 _minutes            0x1               AB1805.o
@@ -608,7 +612,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x38b i2c.o
  .debug_macro   0x00000000     0x1faf i2c.o
  .debug_macro   0x00000000       0x6d i2c.o
- .debug_macro   0x00000000      0x226 i2c.o
+ .debug_macro   0x00000000      0x251 i2c.o
  .group         0x00000000        0x8 main.o
  .group         0x00000000        0x8 main.o
  .group         0x00000000        0x8 main.o
@@ -757,7 +761,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x38b main.o
  .debug_macro   0x00000000     0x1faf main.o
  .debug_macro   0x00000000       0x6d main.o
- .debug_macro   0x00000000      0x226 main.o
+ .debug_macro   0x00000000      0x251 main.o
  .group         0x00000000        0x8 settings.o
  .group         0x00000000        0x8 settings.o
  .group         0x00000000        0x8 settings.o
@@ -904,6 +908,171 @@ Discarded input sections
  .debug_macro   0x00000000      0x38b settings.o
  .debug_macro   0x00000000     0x1faf settings.o
  .debug_macro   0x00000000       0x6d settings.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .group         0x00000000        0x8 time.o
+ .text          0x00000000        0x0 time.o
+ .data          0x00000000        0x0 time.o
+ .bss           0x00000000        0x2 time.o
+ .text.Init1msTimer
+                0x00000000        0x4 time.o
+ .text.TimerAkt
+                0x00000000       0x1c time.o
+ .text.TC2_Handler
+                0x00000000        0x4 time.o
+ .debug_info    0x00000000      0x300 time.o
+ .debug_abbrev  0x00000000       0xa9 time.o
+ .debug_aranges
+                0x00000000       0x30 time.o
+ .debug_ranges  0x00000000       0x20 time.o
+ .debug_macro   0x00000000      0x316 time.o
+ .debug_macro   0x00000000      0x826 time.o
+ .debug_macro   0x00000000       0x22 time.o
+ .debug_macro   0x00000000       0x87 time.o
+ .debug_macro   0x00000000       0x44 time.o
+ .debug_macro   0x00000000       0xfd time.o
+ .debug_macro   0x00000000       0x22 time.o
+ .debug_macro   0x00000000      0x1df time.o
+ .debug_macro   0x00000000       0x40 time.o
+ .debug_macro   0x00000000       0x3a time.o
+ .debug_macro   0x00000000       0x1f time.o
+ .debug_macro   0x00000000      0x250 time.o
+ .debug_macro   0x00000000      0x67d time.o
+ .debug_macro   0x00000000      0x8b0 time.o
+ .debug_macro   0x00000000      0x22e time.o
+ .debug_macro   0x00000000      0xd5c time.o
+ .debug_macro   0x00000000      0x4c6 time.o
+ .debug_macro   0x00000000      0x9f6 time.o
+ .debug_macro   0x00000000      0x82a time.o
+ .debug_macro   0x00000000      0x450 time.o
+ .debug_macro   0x00000000       0x5e time.o
+ .debug_macro   0x00000000      0x8f8 time.o
+ .debug_macro   0x00000000      0x21c time.o
+ .debug_macro   0x00000000      0x734 time.o
+ .debug_macro   0x00000000       0x5e time.o
+ .debug_macro   0x00000000      0x631 time.o
+ .debug_macro   0x00000000      0x3ab time.o
+ .debug_macro   0x00000000      0xc75 time.o
+ .debug_macro   0x00000000     0x1092 time.o
+ .debug_macro   0x00000000      0xc4a time.o
+ .debug_macro   0x00000000      0x6ba time.o
+ .debug_macro   0x00000000     0x1b3c time.o
+ .debug_macro   0x00000000     0x143b time.o
+ .debug_macro   0x00000000      0x33f time.o
+ .debug_macro   0x00000000       0x7c time.o
+ .debug_macro   0x00000000       0xa0 time.o
+ .debug_macro   0x00000000       0x4c time.o
+ .debug_macro   0x00000000       0xca time.o
+ .debug_macro   0x00000000       0x94 time.o
+ .debug_macro   0x00000000       0x58 time.o
+ .debug_macro   0x00000000      0x340 time.o
+ .debug_macro   0x00000000       0x82 time.o
+ .debug_macro   0x00000000      0x188 time.o
+ .debug_macro   0x00000000       0xb8 time.o
+ .debug_macro   0x00000000       0xa0 time.o
+ .debug_macro   0x00000000       0xb2 time.o
+ .debug_macro   0x00000000       0x1c time.o
+ .debug_macro   0x00000000       0x1c time.o
+ .debug_macro   0x00000000       0x1c time.o
+ .debug_macro   0x00000000       0x7c time.o
+ .debug_macro   0x00000000      0x15a time.o
+ .debug_macro   0x00000000       0xdc time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000      0x124 time.o
+ .debug_macro   0x00000000       0xe2 time.o
+ .debug_macro   0x00000000       0xe2 time.o
+ .debug_macro   0x00000000       0xe2 time.o
+ .debug_macro   0x00000000       0xe2 time.o
+ .debug_macro   0x00000000       0xe2 time.o
+ .debug_macro   0x00000000      0x12a time.o
+ .debug_macro   0x00000000      0x100 time.o
+ .debug_macro   0x00000000       0xf4 time.o
+ .debug_macro   0x00000000      0x40f time.o
+ .debug_macro   0x00000000       0x40 time.o
+ .debug_macro   0x00000000      0x38b time.o
+ .debug_macro   0x00000000     0x1faf time.o
+ .debug_macro   0x00000000       0x6d time.o
+ .debug_macro   0x00000000      0x251 time.o
+ .debug_line    0x00000000      0x6f6 time.o
+ .debug_str     0x00000000    0x6e6e8 time.o
+ .comment       0x00000000       0x5a time.o
+ .debug_frame   0x00000000       0x40 time.o
+ .ARM.attributes
+                0x00000000       0x32 time.o
  .group         0x00000000        0x8 uart.o
  .group         0x00000000        0x8 uart.o
  .group         0x00000000        0x8 uart.o
@@ -1050,7 +1219,177 @@ Discarded input sections
  .debug_macro   0x00000000      0x38b uart.o
  .debug_macro   0x00000000     0x1faf uart.o
  .debug_macro   0x00000000       0x6d uart.o
- .debug_macro   0x00000000      0x226 uart.o
+ .debug_macro   0x00000000      0x251 uart.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .group         0x00000000        0x8 ui.o
+ .text          0x00000000        0x0 ui.o
+ .data          0x00000000        0x0 ui.o
+ .bss           0x00000000        0x0 ui.o
+ .text.UiInit   0x00000000       0x14 ui.o
+ .text.SetCounterState
+                0x00000000       0xd0 ui.o
+ .rodata        0x00000000       0x2c ui.o
+ .text.ActCounter
+                0x00000000       0x5c ui.o
+ .text.UpdateTastenCounter
+                0x00000000       0x2c ui.o
+ .text.ReadTasten
+                0x00000000       0x30 ui.o
+ .debug_info    0x00000000      0xa7c ui.o
+ .debug_abbrev  0x00000000      0x207 ui.o
+ .debug_loc     0x00000000       0xe0 ui.o
+ .debug_aranges
+                0x00000000       0x40 ui.o
+ .debug_ranges  0x00000000       0x30 ui.o
+ .debug_macro   0x00000000      0x30c ui.o
+ .debug_macro   0x00000000      0x826 ui.o
+ .debug_macro   0x00000000       0x22 ui.o
+ .debug_macro   0x00000000       0x87 ui.o
+ .debug_macro   0x00000000       0x44 ui.o
+ .debug_macro   0x00000000       0xfd ui.o
+ .debug_macro   0x00000000       0x22 ui.o
+ .debug_macro   0x00000000      0x1df ui.o
+ .debug_macro   0x00000000       0x40 ui.o
+ .debug_macro   0x00000000       0x3a ui.o
+ .debug_macro   0x00000000       0x1f ui.o
+ .debug_macro   0x00000000      0x250 ui.o
+ .debug_macro   0x00000000      0x67d ui.o
+ .debug_macro   0x00000000      0x8b0 ui.o
+ .debug_macro   0x00000000      0x22e ui.o
+ .debug_macro   0x00000000      0xd5c ui.o
+ .debug_macro   0x00000000      0x4c6 ui.o
+ .debug_macro   0x00000000      0x9f6 ui.o
+ .debug_macro   0x00000000      0x82a ui.o
+ .debug_macro   0x00000000      0x450 ui.o
+ .debug_macro   0x00000000       0x5e ui.o
+ .debug_macro   0x00000000      0x8f8 ui.o
+ .debug_macro   0x00000000      0x21c ui.o
+ .debug_macro   0x00000000      0x734 ui.o
+ .debug_macro   0x00000000       0x5e ui.o
+ .debug_macro   0x00000000      0x631 ui.o
+ .debug_macro   0x00000000      0x3ab ui.o
+ .debug_macro   0x00000000      0xc75 ui.o
+ .debug_macro   0x00000000     0x1092 ui.o
+ .debug_macro   0x00000000      0xc4a ui.o
+ .debug_macro   0x00000000      0x6ba ui.o
+ .debug_macro   0x00000000     0x1b3c ui.o
+ .debug_macro   0x00000000     0x143b ui.o
+ .debug_macro   0x00000000      0x33f ui.o
+ .debug_macro   0x00000000       0x7c ui.o
+ .debug_macro   0x00000000       0xa0 ui.o
+ .debug_macro   0x00000000       0x4c ui.o
+ .debug_macro   0x00000000       0xca ui.o
+ .debug_macro   0x00000000       0x94 ui.o
+ .debug_macro   0x00000000       0x58 ui.o
+ .debug_macro   0x00000000      0x340 ui.o
+ .debug_macro   0x00000000       0x82 ui.o
+ .debug_macro   0x00000000      0x188 ui.o
+ .debug_macro   0x00000000       0xb8 ui.o
+ .debug_macro   0x00000000       0xa0 ui.o
+ .debug_macro   0x00000000       0xb2 ui.o
+ .debug_macro   0x00000000       0x1c ui.o
+ .debug_macro   0x00000000       0x1c ui.o
+ .debug_macro   0x00000000       0x1c ui.o
+ .debug_macro   0x00000000       0x7c ui.o
+ .debug_macro   0x00000000      0x15a ui.o
+ .debug_macro   0x00000000       0xdc ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000      0x124 ui.o
+ .debug_macro   0x00000000       0xe2 ui.o
+ .debug_macro   0x00000000       0xe2 ui.o
+ .debug_macro   0x00000000       0xe2 ui.o
+ .debug_macro   0x00000000       0xe2 ui.o
+ .debug_macro   0x00000000       0xe2 ui.o
+ .debug_macro   0x00000000      0x12a ui.o
+ .debug_macro   0x00000000      0x100 ui.o
+ .debug_macro   0x00000000       0xf4 ui.o
+ .debug_macro   0x00000000      0x40f ui.o
+ .debug_macro   0x00000000       0x40 ui.o
+ .debug_macro   0x00000000      0x38b ui.o
+ .debug_macro   0x00000000     0x1faf ui.o
+ .debug_macro   0x00000000       0x6d ui.o
+ .debug_macro   0x00000000      0x251 ui.o
+ .debug_line    0x00000000      0x73a ui.o
+ .debug_str     0x00000000    0x6e997 ui.o
+ .comment       0x00000000       0x5a ui.o
+ .debug_frame   0x00000000       0x70 ui.o
+ .ARM.attributes
+                0x00000000       0x32 ui.o
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/5.3.1/armv6-m\libgcc.a(_udivsi3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/5.3.1/armv6-m\libgcc.a(_udivsi3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/5.3.1/armv6-m\libgcc.a(_divsi3.o)
@@ -1122,7 +1461,9 @@ LOAD Device_Startup/system_samd21.o
 LOAD i2c.o
 LOAD main.o
 LOAD settings.o
+LOAD time.o
 LOAD uart.o
+LOAD ui.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv6-m\libm.a
 END GROUP
@@ -1382,47 +1723,52 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
                 0x20000430                . = ALIGN (0x4)
                 0x20000430                _erelocate = .
 
-.bss            0x20000430       0x80 load address 0x000012e4
+.bss            0x20000430       0x8c load address 0x000012e4
                 0x20000430                . = ALIGN (0x4)
                 0x20000430                _sbss = .
                 0x20000430                _szero = .
  *(.bss .bss.*)
  .bss           0x20000430       0x1c c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/5.3.1/armv6-m/crtbegin.o
  *(COMMON)
- COMMON         0x2000044c       0x62 AB1805.o
+ COMMON         0x2000044c       0x6e AB1805.o
                 0x2000044c                _year
                 0x2000044d                _date
-                0x2000044e                _alarm_day
-                0x2000044f                _alarm_hour
-                0x20000450                new_data
-                0x20000451                _day
-                0x20000452                _alarm_date
-                0x20000453                _hour
-                0x20000454                recievedata
-                0x20000474                senddata
-                0x20000492                _alarm_month
-                0x20000493                _alarm_year
-                0x20000494                _month
-                0x20000498                DateString
-                0x200004a9                _alarm_seconds
-                0x200004aa                _alarm_minutes
-                0x200004ab                _minutes
-                0x200004ac                _seconds
-                0x200004ad                recieve_counter
-                0x200004b0                . = ALIGN (0x4)
- *fill*         0x200004ae        0x2 
-                0x200004b0                _ebss = .
-                0x200004b0                _ezero = .
+                0x2000044e                _10ms
+                0x20000450                _alarm_day
+                0x20000451                _alarm_hour
+                0x20000452                new_data
+                0x20000453                _day
+                0x20000454                TaxCounter
+                0x20000456                Sekunde
+                0x20000458                _alarm_date
+                0x20000459                _hour
+                0x2000045c                recievedata
+                0x2000047c                senddata
+                0x2000049a                _alarm_month
+                0x2000049b                _alarm_year
+                0x2000049c                _month
+                0x200004a0                DateString
+                0x200004b4                TaxState
+                0x200004b5                _alarm_seconds
+                0x200004b6                _alarm_minutes
+                0x200004b7                _minutes
+                0x200004b8                _seconds
+                0x200004b9                recieve_counter
+                0x200004bc                . = ALIGN (0x4)
+ *fill*         0x200004ba        0x2 
+                0x200004bc                _ebss = .
+                0x200004bc                _ezero = .
 
-.stack          0x200004b0     0x2000 load address 0x00001364
-                0x200004b0                . = ALIGN (0x8)
-                0x200004b0                _sstack = .
-                0x200024b0                . = (. + STACK_SIZE)
- *fill*         0x200004b0     0x2000 
-                0x200024b0                . = ALIGN (0x8)
-                0x200024b0                _estack = .
-                0x200024b0                . = ALIGN (0x4)
-                0x200024b0                _end = .
+.stack          0x200004bc     0x2004 load address 0x00001370
+                0x200004c0                . = ALIGN (0x8)
+ *fill*         0x200004bc        0x4 
+                0x200004c0                _sstack = .
+                0x200024c0                . = (. + STACK_SIZE)
+ *fill*         0x200004c0     0x2000 
+                0x200024c0                . = ALIGN (0x8)
+                0x200024c0                _estack = .
+                0x200024c0                . = ALIGN (0x4)
+                0x200024c0                _end = .
 OUTPUT(Firmware_Drugstore.elf elf32-littlearm)
 
 .ARM.attributes
@@ -1476,14 +1822,14 @@ OUTPUT(Firmware_Drugstore.elf elf32-littlearm)
  .comment       0x00000059       0x5a settings.o
  .comment       0x00000059       0x5a uart.o
 
-.debug_info     0x00000000     0xbcfe
- .debug_info    0x00000000      0xdf0 AB1805.o
- .debug_info    0x00000df0     0x3a68 Device_Startup/startup_samd21.o
- .debug_info    0x00004858       0xcd Device_Startup/system_samd21.o
- .debug_info    0x00004925     0x2975 i2c.o
- .debug_info    0x0000729a      0x544 main.o
- .debug_info    0x000077de     0x1c33 settings.o
- .debug_info    0x00009411     0x28ed uart.o
+.debug_info     0x00000000     0xbf8a
+ .debug_info    0x00000000      0xe84 AB1805.o
+ .debug_info    0x00000e84     0x3a68 Device_Startup/startup_samd21.o
+ .debug_info    0x000048ec       0xcd Device_Startup/system_samd21.o
+ .debug_info    0x000049b9     0x29f3 i2c.o
+ .debug_info    0x000073ac      0x5d8 main.o
+ .debug_info    0x00007984     0x1c9b settings.o
+ .debug_info    0x0000961f     0x296b uart.o
 
 .debug_abbrev   0x00000000      0xa92
  .debug_abbrev  0x00000000      0x178 AB1805.o
@@ -1527,7 +1873,7 @@ OUTPUT(Firmware_Drugstore.elf elf32-littlearm)
  .debug_ranges  0x00000198       0x20 settings.o
  .debug_ranges  0x000001b8       0x20 uart.o
 
-.debug_macro    0x00000000    0x1272c
+.debug_macro    0x00000000    0x12782
  .debug_macro   0x00000000      0x320 AB1805.o
  .debug_macro   0x00000320      0x826 AB1805.o
  .debug_macro   0x00000b46       0x22 AB1805.o
@@ -1600,14 +1946,14 @@ OUTPUT(Firmware_Drugstore.elf elf32-littlearm)
  .debug_macro   0x0000ecf3      0x38b AB1805.o
  .debug_macro   0x0000f07e     0x1faf AB1805.o
  .debug_macro   0x0001102d       0x6d AB1805.o
- .debug_macro   0x0001109a      0x226 AB1805.o
- .debug_macro   0x000112c0      0x2f9 Device_Startup/startup_samd21.o
- .debug_macro   0x000115b9      0x2ff Device_Startup/system_samd21.o
- .debug_macro   0x000118b8      0x30c i2c.o
- .debug_macro   0x00011bc4      0x32a main.o
- .debug_macro   0x00011eee      0x312 settings.o
- .debug_macro   0x00012200      0x220 settings.o
- .debug_macro   0x00012420      0x30c uart.o
+ .debug_macro   0x0001109a      0x251 AB1805.o
+ .debug_macro   0x000112eb      0x2f9 Device_Startup/startup_samd21.o
+ .debug_macro   0x000115e4      0x2ff Device_Startup/system_samd21.o
+ .debug_macro   0x000118e3      0x30c i2c.o
+ .debug_macro   0x00011bef      0x32a main.o
+ .debug_macro   0x00011f19      0x312 settings.o
+ .debug_macro   0x0001222b      0x24b settings.o
+ .debug_macro   0x00012476      0x30c uart.o
 
 .debug_line     0x00000000     0x349b
  .debug_line    0x00000000      0x9ba AB1805.o
@@ -1618,21 +1964,21 @@ OUTPUT(Firmware_Drugstore.elf elf32-littlearm)
  .debug_line    0x00002635      0x74b settings.o
  .debug_line    0x00002d80      0x71b uart.o
 
-.debug_str      0x00000000    0x7061c
- .debug_str     0x00000000    0x6e487 AB1805.o
-                              0x6e806 (size before relaxing)
- .debug_str     0x0006e487     0x10a5 Device_Startup/startup_samd21.o
+.debug_str      0x00000000    0x7070e
+ .debug_str     0x00000000    0x6e547 AB1805.o
+                              0x6e8d7 (size before relaxing)
+ .debug_str     0x0006e547     0x10e1 Device_Startup/startup_samd21.o
                               0x6eff4 (size before relaxing)
- .debug_str     0x0006f52c       0x6c Device_Startup/system_samd21.o
+ .debug_str     0x0006f628       0x6c Device_Startup/system_samd21.o
                               0x6deb9 (size before relaxing)
- .debug_str     0x0006f598      0x87c i2c.o
-                              0x6ef5f (size before relaxing)
- .debug_str     0x0006fe14      0x206 main.o
-                              0x6e818 (size before relaxing)
- .debug_str     0x0007001a      0x5e2 settings.o
-                              0x6ecbf (size before relaxing)
- .debug_str     0x000705fc       0x20 uart.o
-                              0x6ef37 (size before relaxing)
+ .debug_str     0x0006f694      0x87c i2c.o
+                              0x6f01c (size before relaxing)
+ .debug_str     0x0006ff10      0x206 main.o
+                              0x6e8e9 (size before relaxing)
+ .debug_str     0x00070116      0x5d8 settings.o
+                              0x6ed6a (size before relaxing)
+ .debug_str     0x000706ee       0x20 uart.o
+                              0x6eff4 (size before relaxing)
 
 .debug_frame    0x00000000      0x678
  .debug_frame   0x00000000      0x344 AB1805.o
