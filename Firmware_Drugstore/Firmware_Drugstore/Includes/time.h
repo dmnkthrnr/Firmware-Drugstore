@@ -11,7 +11,7 @@
 
 #include "sam.h"
 
-void Init1msTimer(void);
+void Init10msTimer(void);
 uint8_t TimerAkt(void);
 
 

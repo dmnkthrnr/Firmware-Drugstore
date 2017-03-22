@@ -22,7 +22,6 @@ void UiInit(void)
 		TaxState[i] = BUTTON_STARTUP;
 		TaxCounter[i] = 0;
 	}
-
 }
 
 // ---------------------------------------------------------------------------
@@ -126,6 +125,15 @@ inline void UpdateTastenCounter(void)
 uint8_t ReadTasten()
 {
 	UpdateTastenCounter();
+	
+	// SW0 kurz gedrückt und losgelassen
+	if (TaxState[TA_SW0_NR] == BUTTON_SHORT_DONE)
+	{
+		TaxState[TA_SW0_NR] = BUTTON_OFF;
+		get_date_string();
+		uart_write(&DateString,17);
+		return (1);
+	}
 	
 	return (1);
 }

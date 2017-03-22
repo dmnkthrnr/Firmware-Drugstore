@@ -10,13 +10,27 @@
 #include "Includes/main.h"
 #include "Includes/time.h"
 #include "Includes/ui.h"
+#include "Includes/uart.h"
+#include "Includes/AB1805.h"
 
 //-----------------------------------------------------------------------------
 // Init 1msTimer
 //-----------------------------------------------------------------------------
-void Init1msTimer(void)
+void Init10msTimer(void)
 {
-
+	PM->APBCMASK.bit.TC3_ = 1;
+	_10ms = 0;
+	Sekunde = 0;
+	
+	TC3->COUNT16.CTRLA.reg |= TC_CTRLA_MODE_COUNT16;
+	TC3->COUNT16.CTRLA.reg |= TC_CTRLA_PRESCALER_DIV2;
+	
+	TC3->COUNT16.INTENSET.bit.MC0 = 1;
+	//alle 10ms Interrupt
+	TC3->COUNT16.CC[0].bit.CC = 40000;
+	
+	TC3->COUNT16.CTRLA.reg |= TC_CTRLA_ENABLE;
+	while ( TC3->COUNT16.STATUS.bit.SYNCBUSY == 1 ){}
 }
 
 // ---------------------------------------------------------------------------
@@ -31,14 +45,12 @@ uint8_t TimerAkt(void)
 	if (Old10ms != _10ms)
 	{
 		Old10ms = _10ms;
-		
 		ReadTasten();
 				
 		switch (Old10ms)
 		{
-			case 50:
-				break;
-				
+			case 0:
+				break;				
 			
 			default:
 				break;
@@ -49,8 +61,19 @@ uint8_t TimerAkt(void)
 
 
 
-void TC2_Handler(void)
+void TC3_Handler(void)
 {
-
+	if (TC3->COUNT16.INTFLAG.bit.MC0 == 1)
+	{
+		TC3->COUNT16.INTFLAG.bit.MC0 = 1;
+		TC3->COUNT16.COUNT.bit.COUNT = 0;
+		//PORT->Group[0].OUTTGL.reg |= PORT_PA10;
+		_10ms++;
+		if(_10ms == 100)
+		{
+			_10ms = 0;
+			Sekunde++;
+		}
+	}
 }
 	

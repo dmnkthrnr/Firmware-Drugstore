@@ -14,16 +14,29 @@
 
 void InitAB1805()
 {
-	//CMDR = 2 / OFFSETR = 4222
-	write_rtc_register(CAL_RC_HI_REGISTER, 0x90);		
-	//recievedata[3]=read_rtc_register(CAL_RC_HI_REGISTER);
-	write_rtc_register(CAL_RC_LOW_REGISTER, 0x7E);
-	//recievedata[4]=read_rtc_register(CAL_RC_LOW_REGISTER);
+	//Calibrating RC Oscillator
+// 	//CMDR = 2 / OFFSETR = 4222
+// 	write_rtc_register(CAL_RC_HI_REGISTER,0x90);		
+// 	//recievedata[3]=read_rtc_register(CAL_RC_HI_REGISTER);
+// 	write_rtc_register(CAL_RC_LOW_REGISTER,0x7E);
+// 	//recievedata[4]=read_rtc_register(CAL_RC_LOW_REGISTER);
 	
 	//Enable Oscillator Register (Key 0xA1)
 	write_rtc_register(CONFIG_KEY_REGISTER,0xA1);
-	//Enable RC Oscillator
-	write_rtc_register(0x1C,0x80);
+// 	//Enable XT Oscillator
+// 	write_rtc_register(OSC_CONTROL_REGISTER,0x00);
+// 	//Enable RC Oscillator
+// 	write_rtc_register(OSC_CONTROL_REGISTER,0x80);
+
+	//Enable RC Oscillator and Autocalibration and Autocalibration Interrupt Enable (11100001)
+	//OSEL, ACAL, ACAL, AOS, FOS, PWGT, OFIE, ACIE
+	write_rtc_register(OSC_CONTROL_REGISTER, 0xE1);
+	
+	//Enable AFCTRL REG (Key 0x9D)
+	write_rtc_register(CONFIG_KEY_REGISTER,0x9D);
+	//Enable Autocalibration Filter
+	write_rtc_register(AFCTRL_REGISTER, 0xA0);
+	
 	
 	//1Hz to Output Pin
 	write_rtc_register(CONTROL2_REGISTER, 0x01);	//SQW Mode Selected on PIN FOUT/nIRQ (11)
@@ -34,8 +47,8 @@ uint8_t read_rtc_register(const uint8_t rtc_register)
 {
 	senddata[0] = rtc_register;
 	
-	i2c_write(&senddata,1);
-	i2c_read(&recievedata,1);
+	i2c_write(&senddata,1,I2C_ADDRESS_AB1805);
+	i2c_read(&recievedata,1,I2C_ADDRESS_AB1805);
 	
 	return recievedata[0]; 
 }
@@ -45,7 +58,7 @@ uint8_t write_rtc_register(const uint8_t rtc_register, const uint8_t data)
 	senddata[0] = rtc_register;
 	senddata[1] = data;
 	
-	i2c_write(&senddata,2);
+	i2c_write(&senddata,2,I2C_ADDRESS_AB1805);
 	
 	return (1);
 }

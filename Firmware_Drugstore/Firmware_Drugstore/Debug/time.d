@@ -70,7 +70,8 @@ time.d time.o: .././time.c \
  C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include/instance/usb.h \
  C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include/instance/wdt.h \
  C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include/pio/samd21j18a.h \
- .././Includes/main.h .././Includes/time.h .././Includes/ui.h
+ .././Includes/main.h .././Includes/time.h .././Includes/ui.h \
+ .././Includes/uart.h .././Includes/AB1805.h
 
 C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include/sam.h:
 
@@ -219,3 +220,7 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a
 .././Includes/time.h:
 
 .././Includes/ui.h:
+
+.././Includes/uart.h:
+
+.././Includes/AB1805.h:
