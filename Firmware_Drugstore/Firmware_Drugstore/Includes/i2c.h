@@ -13,9 +13,9 @@
 
 void InitI2C(void);
 
-void i2c_write(uint8_t *data, uint8_t size);
-void i2c_read(uint8_t *data, uint8_t size);
-void i2c_write_start(void);
+void i2c_write(uint8_t *data, uint8_t size, uint8_t address);
+void i2c_read(uint8_t *data, uint8_t size, uint8_t address);
+void i2c_write_start(uint8_t address);
 void i2c_write_byte(uint8_t byte);
 void i2c_write_stop(void);
 

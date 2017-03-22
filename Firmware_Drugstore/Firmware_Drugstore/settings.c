@@ -19,7 +19,7 @@ void InitPorts()
 	PORT->Group[0].PINCFG[9].bit.PMUXEN = 1;
 	PORT->Group[0].PMUX[4].reg = PORT_PMUX_PMUXE(0x2) | PORT_PMUX_PMUXO(0x2);
 	
-	//Init Uart Virtual COMPORT
+	//Init Uart Virtual COM-PORT
 	//PA22 SERCOM3/PAD[0] Multiplex C Tx
 	//PA23 SERCOM3/PAD[1] Multiplex C Rx
 	PORT->Group[0].PINCFG[22].bit.PMUXEN = 1;
@@ -28,7 +28,17 @@ void InitPorts()
 	
 	//Pin PB14 GCLK_IO[0]
 	PORT->Group[1].PINCFG[14].bit.PMUXEN = 1;
-	PORT->Group[1].PMUX[14/2].reg = PORT_PMUX_PMUXE(0x7);
+	PORT->Group[1].PMUX[14/2].reg |= PORT_PMUX_PMUXE(0x7);
+	
+	//Testpin PA10
+	PORT->Group[0].DIR.reg |= PORT_PA10;
+	
+	//Pin PA15 (SW0 Xplained Board) auf Eingang schalten
+	PORT->Group[0].OUTSET.reg |= PORT_PA15;
+	PORT->Group[0].PINCFG[15].bit.PMUXEN = 1;
+	PORT->Group[0].PINCFG[15].bit.INEN = 1;
+	PORT->Group[0].PINCFG[15].bit.PULLEN = 1;
+	PORT->Group[0].PMUX[15/2].reg |= PORT_PMUX_PMUXO(0x0);
 }
 
 void InitClocks()
@@ -40,6 +50,8 @@ void InitClocks()
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM0_CORE;
 	//Clock to SERCOM3 UART
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM3_CORE;
+	//Clock to TC3 10msCounter
+	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_TCC2_TC3;
 	
 	while (GCLK->STATUS.bit.SYNCBUSY){}
 }

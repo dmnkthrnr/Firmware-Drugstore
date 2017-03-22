@@ -26,24 +26,26 @@ int main(void)
 	InitPorts();
 	InitClocks();
 	
+	Init10msTimer();
+	
 	InitI2C();
 	InitUART();
 	
 	InitAB1805();
 	//Set DateTime
-	set_datetime(0x17,0x03,0x21,0x02,0x13,0x21,0x40);
+	set_datetime(0x17,0x03,0x22,0x03,0x15,0x07,0x00);
 	
 	/* Replace with your application code */
 	while (1)
 	{
-		//Wait 1s
-		for(uint32_t i=0;i<2000000;i++){}
-		get_date_string();
-		uart_write(&DateString,17);
+		//Wait a little bit
+		for (uint32_t i=0; i<500; i++){}
+		TimerAkt();
 	}
 }
 
 void enable_interrupts()
 {
 	NVIC_EnableIRQ(SERCOM3_IRQn);
+	NVIC_EnableIRQ(TC3_IRQn);
 }

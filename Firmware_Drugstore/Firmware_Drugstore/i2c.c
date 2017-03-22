@@ -39,10 +39,10 @@ void InitI2C()
 //-----------------------------------------------------------------------------
 // WRITE Data to Slave
 //-----------------------------------------------------------------------------
-void i2c_write(uint8_t *data, uint8_t size)
+void i2c_write(uint8_t *data, uint8_t size, uint8_t address)
 {
 	//Send Slave Address and Write
-	SERCOM0->I2CM.ADDR.reg = I2C_ADDRESS<<1 | I2C_TRANSFER_WRITE;
+	SERCOM0->I2CM.ADDR.reg = address<<1 | I2C_TRANSFER_WRITE;
 	
 	while (0 == (SERCOM0->I2CM.INTFLAG.reg & SERCOM_I2CM_INTFLAG_MB));
 
@@ -74,10 +74,10 @@ void i2c_write(uint8_t *data, uint8_t size)
 //-----------------------------------------------------------------------------
 // READ Data from Slave
 //-----------------------------------------------------------------------------
-void i2c_read(uint8_t *data, uint8_t size)
+void i2c_read(uint8_t *data, uint8_t size, uint8_t address)
 {
 	//Write Slave Address and Read
-	SERCOM0->I2CM.ADDR.reg = I2C_ADDRESS<<1 | I2C_TRANSFER_READ;
+	SERCOM0->I2CM.ADDR.reg = address<<1 | I2C_TRANSFER_READ;
 
 	while (0 == (SERCOM0->I2CM.INTFLAG.reg & SERCOM_I2CM_INTFLAG_SB));
 	
@@ -109,9 +109,9 @@ void i2c_read(uint8_t *data, uint8_t size)
 //-----------------------------------------------------------------------------
 // Write Start to I2C
 //-----------------------------------------------------------------------------
-void i2c_write_start(void)
+void i2c_write_start(uint8_t address)
 {
-	SERCOM0->I2CM.ADDR.reg = I2C_ADDRESS<<1 | I2C_TRANSFER_WRITE;
+	SERCOM0->I2CM.ADDR.reg = address<<1 | I2C_TRANSFER_WRITE;
 
 	while (0 == (SERCOM0->I2CM.INTFLAG.reg & SERCOM_I2CM_INTFLAG_MB));
 
