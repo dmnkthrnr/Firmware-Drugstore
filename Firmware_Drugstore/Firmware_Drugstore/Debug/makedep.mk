@@ -14,6 +14,8 @@ main.c
 
 settings.c
 
+stepper_motor.c
+
 time.c
 
 uart.c

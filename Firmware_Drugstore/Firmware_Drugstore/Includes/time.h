@@ -9,7 +9,7 @@
 #ifndef TIME_H_
 #define TIME_H_
 
-#include "sam.h"
+#include "main.h"
 
 void Init10msTimer(void);
 uint8_t TimerAkt(void);

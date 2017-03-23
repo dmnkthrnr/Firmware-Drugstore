@@ -5,8 +5,6 @@
  *  Author: thurnerd
  */ 
 
-#include "sam.h"
-
 #include "Includes/main.h"
 #include "Includes/uart.h"
 

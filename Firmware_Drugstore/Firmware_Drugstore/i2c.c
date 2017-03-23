@@ -5,10 +5,9 @@
  *  Author: thurnerd
  */ 
 
-#include "Includes/i2c.h"
 #include "Includes/main.h"
+#include "Includes/i2c.h"
 
-#include "sam.h"
 
 //-----------------------------------------------------------------------------
 // Init I2C Master Mode

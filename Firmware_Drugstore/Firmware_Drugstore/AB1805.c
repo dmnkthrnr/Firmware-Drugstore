@@ -5,7 +5,6 @@
  *  Author: thurnerd
  */ 
 
-#include "sam.h"
 #include "Includes/main.h"
 #include "Includes/i2c.h"
 #include "Includes/AB1805.h"
@@ -27,28 +26,44 @@ void InitAB1805()
 // 	write_rtc_register(OSC_CONTROL_REGISTER,0x00);
 // 	//Enable RC Oscillator
 // 	write_rtc_register(OSC_CONTROL_REGISTER,0x80);
-
+	
 	//Enable RC Oscillator and Autocalibration and Autocalibration Interrupt Enable (11100001)
 	//OSEL, ACAL, ACAL, AOS, FOS, PWGT, OFIE, ACIE
 	write_rtc_register(OSC_CONTROL_REGISTER, 0xE1);
+	
+	//Enable Alarm Interrupt
+	write_rtc_register(INT_MASK_REGISTER, 0xE4);
 	
 	//Enable AFCTRL REG (Key 0x9D)
 	write_rtc_register(CONFIG_KEY_REGISTER,0x9D);
 	//Enable Autocalibration Filter
 	write_rtc_register(AFCTRL_REGISTER, 0xA0);
 	
+	//Control 1 Register only set WRTC (write RTC enable)
+	write_rtc_register(CONTROL1_REGISTER, 0x31);
 	
-	//1Hz to Output Pin
-	write_rtc_register(CONTROL2_REGISTER, 0x01);	//SQW Mode Selected on PIN FOUT/nIRQ (11)
-	write_rtc_register(SQW_REGISTER, 0x8F);			//1Hz Output
+// 	//1Hz to Output Pin
+// 	write_rtc_register(CONTROL2_REGISTER, 0x01);	//SQW Mode Selected on PIN FOUT/nIRQ (11)
+// 	write_rtc_register(SQW_REGISTER, 0x8F);			//1Hz Output
+
+	//Active nIRQ1 and nIRQ2
+	write_rtc_register(CONTROL2_REGISTER,0x0F);
+	
+	//Alarm Repeat Funktion (Once per Minute)
+	write_rtc_register(0x18, 0x3B);
+	
+	//Clear LKO2 Bit
+	write_rtc_register(0x1D, 0x02);
+	
+	
 }
 
 uint8_t read_rtc_register(const uint8_t rtc_register)
 {
 	senddata[0] = rtc_register;
 	
-	i2c_write(&senddata,1,I2C_ADDRESS_AB1805);
-	i2c_read(&recievedata,1,I2C_ADDRESS_AB1805);
+	i2c_write(senddata,1,I2C_ADDRESS_AB1805);
+	i2c_read(recievedata,1,I2C_ADDRESS_AB1805);
 	
 	return recievedata[0]; 
 }
@@ -58,9 +73,9 @@ uint8_t write_rtc_register(const uint8_t rtc_register, const uint8_t data)
 	senddata[0] = rtc_register;
 	senddata[1] = data;
 	
-	i2c_write(&senddata,2,I2C_ADDRESS_AB1805);
+	i2c_write(senddata,2,I2C_ADDRESS_AB1805);
 	
-	return (1);
+	return true;
 }
 
 uint8_t get_rtc_data(const uint8_t rtc_register, const uint8_t register_mask)
@@ -189,42 +204,35 @@ uint8_t get_month_alarm(void) {
 	return _alarm_month;
 }
 
-uint8_t set_seconds_alarm(uint8_t value) {
+void set_seconds_alarm(uint8_t value) {
 	_alarm_seconds = value % MAX_SECOND;
-	return (value == _alarm_seconds);
+	write_rtc_register(SECOND_ALARM_REGISTER, _alarm_seconds);
 }
 
-uint8_t set_minutes_alarm(uint8_t value) {
+void set_minutes_alarm(uint8_t value) {
 	_alarm_minutes = value % MAX_MINUTE;
-	return (value == _alarm_minutes);
+	write_rtc_register(MINUTE_ALARM_REGISTER, _alarm_minutes);
 }
 
-uint8_t set_hour_alarm(uint8_t value) {
+void set_hour_alarm(uint8_t value) {
 	_alarm_hour = value % MAX_HOURS;
-	return (value == _alarm_hour);
+	write_rtc_register(HOUR_ALARM_REGISTER, _alarm_hour);
 }
 
-uint8_t set_day_alarm(uint8_t value) {
+void set_day_alarm(uint8_t value) {
 	_alarm_day = value % MAX_DAY;
-	return (value == _alarm_day);
+	write_rtc_register(DAY_ALARM_REGISTER, _alarm_day);
 }
 
-uint8_t set_date_alarm(uint8_t value) {
+void set_date_alarm(uint8_t value) {
 	_alarm_date = value % MAX_DATE;
-	return (value == _alarm_date);
+	write_rtc_register(DATE_ALARM_REGISTER, _alarm_date);
 }
 
-uint8_t set_month_alarm(uint8_t value) {
+void set_month_alarm(uint8_t value) {
 	_alarm_month = value % MAX_MONTH;
-	return (value == _alarm_month);
+	write_rtc_register(MONTH_ALARM_REGISTER, _alarm_month);
 }
-
-uint8_t set_year_alarm(uint8_t value) {
-	_alarm_year = value % MAX_YEAR;
-	return (value == _alarm_year);
-}
-
-
 
 	
 void get_date_string(void)

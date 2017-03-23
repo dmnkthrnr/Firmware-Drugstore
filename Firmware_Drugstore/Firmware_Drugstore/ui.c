@@ -5,10 +5,10 @@
  *  Author: thurnerd
  */ 
 
-#include "sam.h"
-
 #include "Includes/main.h"
 #include "Includes/ui.h"
+#include "Includes/AB1805.h"
+#include "Includes/uart.h"
 
 
 // ---------------------------------------------------------------------------
@@ -73,9 +73,11 @@ void SetCounterState(void)
 				break;
 			case 100:
 				TaxState[i] = BUTTON_1S;
+				uart_write((uint8_t*)&"1SEK",4);
 				break;
 			case 200:
 				TaxState[i] = BUTTON_2S;
+				uart_write((uint8_t*)&"2SEK",4);
 				break;
 			case 300:
 				TaxState[i] = BUTTON_3S;
@@ -131,9 +133,28 @@ uint8_t ReadTasten()
 	{
 		TaxState[TA_SW0_NR] = BUTTON_OFF;
 		get_date_string();
-		uart_write(&DateString,17);
+		uart_write(DateString,17);
 		return (1);
 	}
 	
+	if (TaxState[TA_SW0_NR] == BUTTON_2S_DONE)
+	{
+		TaxState[TA_SW0_NR] = BUTTON_OFF;
+		
+		return (GOTOSLEEP);
+	}
+	
 	return (1);
+}
+
+// ---------------------------------------------------------------------------
+//  Wake Up via PA11 from Sleep
+// ---------------------------------------------------------------------------
+void EIC_Handler()
+{
+	if (EIC->INTFLAG.bit.EXTINT11 == 1)
+	{
+		EIC->INTFLAG.bit.EXTINT11 = 1; //Interrupt Flag löschen
+		while(EIC->INTFLAG.bit.EXTINT11 == 1){}
+	}
 }

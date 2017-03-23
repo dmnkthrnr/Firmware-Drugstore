@@ -9,7 +9,7 @@
 #ifndef UART_H_
 #define UART_H_
 
-#include "sam.h"
+#include "main.h"
 
 void InitUART(void);
 

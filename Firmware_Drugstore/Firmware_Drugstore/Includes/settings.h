@@ -9,10 +9,13 @@
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
+#include "main.h"
 
 void InitPorts(void);
 void InitClocks(void);
+void InitEIC(void);
 
 void Value2String( int16_t Value, uint8_t *DestPtr, uint8_t Stellen);
+void Delay_ms(uint16_t Milliseconds);
 
 #endif /* SETTINGS_H_ */
