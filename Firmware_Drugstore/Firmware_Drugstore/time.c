@@ -5,13 +5,15 @@
  *  Author: thurnerd
  */ 
 
-#include "sam.h"
-
 #include "Includes/main.h"
 #include "Includes/time.h"
+#include "Includes/i2c.h"
 #include "Includes/ui.h"
 #include "Includes/uart.h"
 #include "Includes/AB1805.h"
+#include "Includes/stepper_motor.h"
+
+
 
 //-----------------------------------------------------------------------------
 // Init 1msTimer
@@ -40,17 +42,30 @@ void Init10msTimer(void)
 uint8_t TimerAkt(void)
 {
 	static uint16_t Old10ms=0;
+	static uint8_t buttonstate = 0;
 	
 	//Wenn neue ms
 	if (Old10ms != _10ms)
 	{
 		Old10ms = _10ms;
-		ReadTasten();
+		buttonstate = ReadTasten();
+		
+		if (buttonstate == GOTOSLEEP)
+		{
+			
+		}
+		
 				
 		switch (Old10ms)
 		{
-			case 0:
-				break;				
+			case 10:
+				if (read_rtc_register(STATUS_REGISTER) == 0x04)
+				{
+					write_rtc_register(STATUS_REGISTER, 0x00);
+					get_date_string();
+					uart_write(DateString,17);
+				}
+				break;						
 			
 			default:
 				break;

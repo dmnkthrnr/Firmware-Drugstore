@@ -9,7 +9,7 @@
 #ifndef UI_H_
 #define UI_H_
 
-#include "sam.h"
+#include "main.h"
 
 enum eBUTTON_STATES{
 	BUTTON_STARTUP = 0,

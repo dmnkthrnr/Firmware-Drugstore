@@ -8,8 +8,6 @@
 #include "Includes/main.h"
 #include "Includes/settings.h"
 
-#include "sam.h"
-
 void InitPorts()
 {
 	//Init I2C
@@ -39,13 +37,31 @@ void InitPorts()
 	PORT->Group[0].PINCFG[15].bit.INEN = 1;
 	PORT->Group[0].PINCFG[15].bit.PULLEN = 1;
 	PORT->Group[0].PMUX[15/2].reg |= PORT_PMUX_PMUXO(0x0);
+	
+	//Pin PA11 auf Eingang schalten
+	//PORT->Group[0].OUTSET.reg |= PORT_PA11;
+	PORT->Group[0].PINCFG[11].bit.PMUXEN = 1;
+	PORT->Group[0].PINCFG[11].bit.INEN = 1;
+	PORT->Group[0].PINCFG[11].bit.PULLEN = 1;
+	PORT->Group[0].PMUX[11/2].reg |= PORT_PMUX_PMUXO(0x0);
+	
+	//Init Stepper Motor Ports
+	REG_PORT_DIRSET0 = AIN1 | AIN2 | BIN1 | BIN2 | MOTOR_SLEEP; //Set Pins to Output
+	REG_PORT_OUTCLR0 = AIN1 | AIN2 | BIN1 | BIN2 | MOTOR_SLEEP; //Set Pins to LOW
 }
 
 void InitClocks()
 {	
+	//Set OSC8M to 8MHz
 	SYSCTRL->OSC8M.bit.PRESC = 0x0;
 	
+	
+	//Enable Generic Clock 0 to OSC8M
 	GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(0x00) | GCLK_GENCTRL_GENEN | GCLK_GENCTRL_OE | GCLK_GENCTRL_SRC_OSC8M;
+	//Enable Generic Clock 1 to OSCULP32K
+	GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(0x01) | GCLK_GENCTRL_GENEN | GCLK_GENCTRL_SRC_OSCULP32K;
+	
+	//Peripheries with OSC8M (GEN GLCK[0]
 	//Clock to SERCOM0 I2C
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM0_CORE;
 	//Clock to SERCOM3 UART
@@ -53,7 +69,33 @@ void InitClocks()
 	//Clock to TC3 10msCounter
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_TCC2_TC3;
 	
+	//Peripheries with OSC8M (GEN GLCK[0]
+	//Clock to EIC
+	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK1 | GCLK_CLKCTRL_ID_EIC;
+	
 	while (GCLK->STATUS.bit.SYNCBUSY){}
+}
+
+//-----------------------------------------------------------------------------
+// Init External Interrupt Controller
+//-----------------------------------------------------------------------------
+void InitEIC(void)
+{	
+	PM->APBAMASK.bit.EIC_ = 1;
+	
+	EIC->CTRL.bit.SWRST = 1;
+	while(EIC->STATUS.bit.SYNCBUSY == 1){}
+	
+	EIC->WAKEUP.bit.WAKEUPEN11 = 1;
+		
+	//Pin PA11 ExtInt[11]
+	EIC->CONFIG[1].bit.SENSE3 = 0x01;
+	EIC->CONFIG[1].bit.FILTEN3 = 0x00;
+	
+	EIC->CTRL.bit.ENABLE = 1;
+	while(EIC->STATUS.bit.SYNCBUSY == 1){}
+	
+	EIC->INTENSET.bit.EXTINT11 = 1;
 }
 
 // ---------------------------------------------------------------------------
@@ -153,4 +195,12 @@ void Value2String( int16_t Value, uint8_t *DestPtr, uint8_t Stellen)
 		}
 		*DestPtr = Value+'0';
 	}
+}
+
+// ---------------------------------------------------------------------------
+//  Delay ms
+// ---------------------------------------------------------------------------
+void Delay_ms(uint16_t Milliseconds)
+{
+	for(uint32_t i=0; i<=Milliseconds*5; i++){}
 }

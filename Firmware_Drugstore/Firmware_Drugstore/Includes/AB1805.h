@@ -9,7 +9,7 @@
 #ifndef AB1805_H_
 #define AB1805_H_
 
-#include "sam.h"
+#include "main.h"
 
 void InitAB1805(void);
 
@@ -45,13 +45,12 @@ uint8_t get_day_alarm(void);
 uint8_t get_date_alarm(void);
 uint8_t get_month_alarm(void);
 
-uint8_t set_seconds_alarm(uint8_t value);
-uint8_t set_minutes_alarm(uint8_t value);
-uint8_t set_hour_alarm(uint8_t value);
-uint8_t set_day_alarm(uint8_t value);
-uint8_t set_date_alarm(uint8_t value);
-uint8_t set_month_alarm(uint8_t value);
-uint8_t set_year_alarm(uint8_t value);
+void set_seconds_alarm(uint8_t value);
+void set_minutes_alarm(uint8_t value);
+void set_hour_alarm(uint8_t value);
+void set_day_alarm(uint8_t value);
+void set_date_alarm(uint8_t value);
+void set_month_alarm(uint8_t value);
 
 void get_date_string(void);
 
@@ -70,7 +69,7 @@ void get_date_string(void);
 #define DATE_ALARM_REGISTER         0x0C
 #define MONTH_ALARM_REGISTER        0x0D
 #define DAY_ALARM_REGISTER          0x0E
-#define STATU_REGISTER              0x0F
+#define STATUS_REGISTER             0x0F
 
 #define CONTROL1_REGISTER           0x10
 #define CONTROL2_REGISTER           0x11
