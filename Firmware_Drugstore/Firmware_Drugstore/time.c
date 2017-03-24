@@ -6,6 +6,7 @@
  */ 
 
 #include "Includes/main.h"
+
 #include "Includes/time.h"
 #include "Includes/i2c.h"
 #include "Includes/ui.h"
@@ -43,6 +44,8 @@ uint8_t TimerAkt(void)
 {
 	static uint16_t Old10ms=0;
 	static uint8_t buttonstate = 0;
+	static uint16_t gotosleep = 0;
+	
 	
 	//Wenn neue ms
 	if (Old10ms != _10ms)
@@ -52,18 +55,19 @@ uint8_t TimerAkt(void)
 		
 		if (buttonstate == GOTOSLEEP)
 		{
-			
+			gotosleep = 1;	
 		}
 		
 				
 		switch (Old10ms)
 		{
 			case 10:
-				if (read_rtc_register(STATUS_REGISTER) == 0x04)
+				if (gotosleep)
 				{
-					write_rtc_register(STATUS_REGISTER, 0x00);
-					get_date_string();
-					uart_write(DateString,17);
+ 					gotosleep = 0;
+					SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+					__DSB();
+					__WFI();
 				}
 				break;						
 			

@@ -11,6 +11,8 @@
 
 #include "main.h"
 
+uint8_t InitAll(void);
+
 void InitPorts(void);
 void InitClocks(void);
 void InitEIC(void);

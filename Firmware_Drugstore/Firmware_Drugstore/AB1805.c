@@ -20,6 +20,19 @@ void InitAB1805()
 // 	write_rtc_register(CAL_RC_LOW_REGISTER,0x7E);
 // 	//recievedata[4]=read_rtc_register(CAL_RC_LOW_REGISTER);
 	
+	
+	//Control 1 Register set WRTC (write RTC enable)
+	write_rtc_register(CONTROL1_REGISTER, 0x01);
+	
+	//OUT1S = FOUT/nIRQ (nAIRQ if AIE is set, else OUT)
+	write_rtc_register(CONTROL2_REGISTER,0x03);
+	
+	//Enable Alarm Interrupt
+	write_rtc_register(INT_MASK_REGISTER, 0xE4);
+	
+	//Alarm Repeat Function (Once per Minute) RPT = 0b110 
+	write_rtc_register(TIMER_CONTROL_REGISTER, 0x3B);
+	
 	//Enable Oscillator Register (Key 0xA1)
 	write_rtc_register(CONFIG_KEY_REGISTER,0xA1);
 // 	//Enable XT Oscillator
@@ -31,30 +44,16 @@ void InitAB1805()
 	//OSEL, ACAL, ACAL, AOS, FOS, PWGT, OFIE, ACIE
 	write_rtc_register(OSC_CONTROL_REGISTER, 0xE1);
 	
-	//Enable Alarm Interrupt
-	write_rtc_register(INT_MASK_REGISTER, 0xE4);
-	
 	//Enable AFCTRL REG (Key 0x9D)
 	write_rtc_register(CONFIG_KEY_REGISTER,0x9D);
 	//Enable Autocalibration Filter
 	write_rtc_register(AFCTRL_REGISTER, 0xA0);
 	
-	//Control 1 Register only set WRTC (write RTC enable)
-	write_rtc_register(CONTROL1_REGISTER, 0x31);
+
 	
 // 	//1Hz to Output Pin
 // 	write_rtc_register(CONTROL2_REGISTER, 0x01);	//SQW Mode Selected on PIN FOUT/nIRQ (11)
-// 	write_rtc_register(SQW_REGISTER, 0x8F);			//1Hz Output
-
-	//Active nIRQ1 and nIRQ2
-	write_rtc_register(CONTROL2_REGISTER,0x0F);
-	
-	//Alarm Repeat Funktion (Once per Minute)
-	write_rtc_register(0x18, 0x3B);
-	
-	//Clear LKO2 Bit
-	write_rtc_register(0x1D, 0x02);
-	
+// 	write_rtc_register(SQW_REGISTER, 0x8F);			//1Hz Output	
 	
 }
 

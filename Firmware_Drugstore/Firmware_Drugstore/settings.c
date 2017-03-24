@@ -6,7 +6,14 @@
  */ 
 
 #include "Includes/main.h"
+
+#include "Includes/i2c.h"
 #include "Includes/settings.h"
+#include "Includes/AB1805.h"
+#include "Includes/uart.h"
+#include "Includes/stepper_motor.h"
+#include "Includes/time.h"
+#include "Includes/ui.h"
 
 void InitPorts()
 {
@@ -96,6 +103,26 @@ void InitEIC(void)
 	while(EIC->STATUS.bit.SYNCBUSY == 1){}
 	
 	EIC->INTENSET.bit.EXTINT11 = 1;
+}
+
+
+// ---------------------------------------------------------------------------
+//  Alles Initialisieren
+// ---------------------------------------------------------------------------
+uint8_t InitAll(void)
+{
+	InitPorts();
+	InitClocks();
+	InitEIC();
+	
+	Init10msTimer();
+	
+	InitI2C();
+	InitUART();
+	
+	InitAB1805();
+	
+	return(0);
 }
 
 // ---------------------------------------------------------------------------
