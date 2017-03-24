@@ -6,6 +6,7 @@
  */ 
 
 #include "Includes/main.h"
+
 #include "Includes/ui.h"
 #include "Includes/AB1805.h"
 #include "Includes/uart.h"
@@ -140,7 +141,7 @@ uint8_t ReadTasten()
 	if (TaxState[TA_SW0_NR] == BUTTON_2S_DONE)
 	{
 		TaxState[TA_SW0_NR] = BUTTON_OFF;
-		
+		uart_write((uint8_t*)&"SLEEP",5);
 		return (GOTOSLEEP);
 	}
 	
@@ -156,5 +157,8 @@ void EIC_Handler()
 	{
 		EIC->INTFLAG.bit.EXTINT11 = 1; //Interrupt Flag löschen
 		while(EIC->INTFLAG.bit.EXTINT11 == 1){}
+		write_rtc_register(STATUS_REGISTER, 0x00);
+		get_date_string();
+		uart_write(DateString,17);
 	}
 }

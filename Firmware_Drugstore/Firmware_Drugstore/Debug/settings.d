@@ -92,7 +92,9 @@ settings.d settings.o: .././settings.c .././Includes/main.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_timespec.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\stdio.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\5.3.1\include\stdbool.h \
- .././Includes/settings.h .././Includes/main.h
+ .././Includes/i2c.h .././Includes/main.h .././Includes/settings.h \
+ .././Includes/AB1805.h .././Includes/uart.h \
+ .././Includes/stepper_motor.h .././Includes/time.h .././Includes/ui.h
 
 .././Includes/main.h:
 
@@ -282,6 +284,18 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\5.3.1\include\stdbool.h:
 
-.././Includes/settings.h:
+.././Includes/i2c.h:
 
 .././Includes/main.h:
+
+.././Includes/settings.h:
+
+.././Includes/AB1805.h:
+
+.././Includes/uart.h:
+
+.././Includes/stepper_motor.h:
+
+.././Includes/time.h:
+
+.././Includes/ui.h:

@@ -24,36 +24,37 @@ int main(void)
 	
 	enable_interrupts();
 	
-	InitPorts();
-	InitClocks();
-	InitEIC();
-	
-	Init10msTimer();
-	
-	InitI2C();
-	InitUART();
-	
-	InitAB1805();
-	//Set DateTime
-	set_datetime(0x17,0x03,0x23,0x04,0x11,0x08,0x45);
-	
-	set_seconds_alarm(0x50);
-	set_minutes_alarm(get_minute());
-	set_hour_alarm(get_hour());
-	set_date_alarm(get_date());
-	set_month_alarm(get_month());
-	set_day_alarm(get_day());
-	
-	
-	
-	
-	
+	State = STM_START;
+
 	/* Replace with your application code */
 	while (1)
 	{
 		//Wait a little bit
-		for (uint32_t i=0; i<500; i++){}
-		TimerAkt();
+		switch (State)
+		{
+			case STM_START:
+				InitAll();
+				
+				//Set DateTime
+				set_datetime(0x17,0x03,0x24,0x04,0x10,0x14,0x35);
+					
+				set_seconds_alarm(0x40);
+				set_minutes_alarm(get_minute());
+				set_hour_alarm(get_hour());
+				set_date_alarm(get_date());
+				set_month_alarm(get_month());
+				set_day_alarm(get_day());
+				State = STM_IDLE;
+				break;
+				
+			case STM_IDLE:
+				TimerAkt();
+// 				if (!TimerAkt())
+// 					State = STM_SLEEP;
+				break;
+			case STM_SLEEP:
+				break;
+		}
 	}
 }
 
