@@ -48,11 +48,15 @@ int main(void)
 				break;
 				
 			case STM_IDLE:
-				TimerAkt();
-// 				if (!TimerAkt())
-// 					State = STM_SLEEP;
+				//TimerAkt();
+ 				if (!TimerAkt())
+ 					State = STM_SLEEP;
 				break;
 			case STM_SLEEP:
+				State = STM_START;
+				SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+				__DSB();
+				__WFI();
 				break;
 		}
 	}
