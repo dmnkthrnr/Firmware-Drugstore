@@ -65,9 +65,7 @@ uint8_t TimerAkt(void)
 				if (gotosleep)
 				{
  					gotosleep = 0;
-					SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
-					__DSB();
-					__WFI();
+					return (1);
 				}
 				break;						
 			
