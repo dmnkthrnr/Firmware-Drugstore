@@ -181,6 +181,9 @@
     <Compile Include="Includes\settings.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Includes\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Includes\stepper_motor.h">
       <SubType>compile</SubType>
     </Compile>
@@ -197,6 +200,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="settings.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="spi.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="stepper_motor.c">
