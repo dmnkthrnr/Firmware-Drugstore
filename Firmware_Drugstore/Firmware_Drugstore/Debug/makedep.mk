@@ -14,6 +14,8 @@ main.c
 
 settings.c
 
+spi.c
+
 stepper_motor.c
 
 time.c

@@ -45,6 +45,7 @@ C_SRCS +=  \
 ../i2c.c \
 ../main.c \
 ../settings.c \
+../spi.c \
 ../stepper_motor.c \
 ../time.c \
 ../uart.c \
@@ -64,6 +65,7 @@ Device_Startup/system_samd21.o \
 i2c.o \
 main.o \
 settings.o \
+spi.o \
 stepper_motor.o \
 time.o \
 uart.o \
@@ -76,6 +78,7 @@ Device_Startup/system_samd21.o \
 i2c.o \
 main.o \
 settings.o \
+spi.o \
 stepper_motor.o \
 time.o \
 uart.o \
@@ -88,6 +91,7 @@ Device_Startup/system_samd21.d \
 i2c.d \
 main.d \
 settings.d \
+spi.d \
 stepper_motor.d \
 time.d \
 uart.d \
@@ -100,6 +104,7 @@ Device_Startup/system_samd21.d \
 i2c.d \
 main.d \
 settings.d \
+spi.d \
 stepper_motor.d \
 time.d \
 uart.d \
@@ -121,6 +126,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

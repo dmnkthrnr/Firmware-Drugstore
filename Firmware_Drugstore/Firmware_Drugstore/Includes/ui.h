@@ -36,6 +36,7 @@ uint8_t ReadTasten(void);
 void UpdateTastenCounter(void);
 void SetCounterState(void);
 void ActCounter(uint8_t OnOff, uint8_t InputNr);
+void gotosleep(void);
 
 
 

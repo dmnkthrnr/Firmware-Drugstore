@@ -13,6 +13,9 @@
 #include "stdio.h"
 #include "stdbool.h"
 
+
+
+
 // ---------------------------------------------------------------------------
 //  States
 // ---------------------------------------------------------------------------
@@ -21,6 +24,34 @@
 #define STM_SLEEP 					3
 
 volatile uint8_t State;
+
+
+// ---------------------------------------------------------------------------
+//  Display Defines
+// ---------------------------------------------------------------------------
+#define DISPLAY_RS_PIN		PORT_PB11
+#define DISPLAY_RESET_PIN	PORT_PB10	
+
+#define DISPLAY_ON()           write_display_instruction(0xaf)   //  Display on
+#define DISPLAY_OFF()          write_display_instruction(0xae)   //  Display off
+#define SET_ADC()              write_display_instruction(0xa1)   //  Reverse disrect (SEG131-SEG0)
+#define CLEAR_ADC()            write_display_instruction(0xa0)   //  Normal disrect (SEG0-SEG131)
+#define REVERSE_DISPLAY_ON()   write_display_instruction(0xa7)   //  Reverse display : 0 illuminated
+#define REVERSE_DISPLAY_OFF()  write_display_instruction(0xa6)   //  Normal display : 1 illuminated
+#define ENTIRE_DISPLAY_ON()    write_display_instruction(0xa5)   //  Entire dislay   Force whole LCD point
+#define ENTIRE_DISPLAY_OFF()   write_display_instruction(0xa4)   //  Normal display
+#define SET_BIAS()             write_display_instruction(0xa3)   //  bias 1
+#define CLEAR_BIAS()           write_display_instruction(0xa2)   //  bias 0
+#define SET_MODIFY_READ()      write_display_instruction(0xe0)   //  Stop automatic increment of the column address by the read instruction
+#define RESET_MODIFY_READ()    write_display_instruction(0xee)   //  Cancel Modify_read, column address return to its initial value just before the Set Modify Read instruction is started
+#define RESET()                write_display_instruction(0xe2)
+#define SET_SHL()              write_display_instruction(0xc8)   // SHL 1,COM63-COM0
+#define CLEAR_SHL()            write_display_instruction(0xc0)   // SHL 0,COM0-COM63
+
+#define Start_column	0x00
+#define Start_page		0x00
+#define	StartLine_set	0x00	
+
 
 
 //-----------------------------------------------------------------------------

@@ -14,6 +14,7 @@
 #include "Includes/stepper_motor.h"
 #include "Includes/time.h"
 #include "Includes/ui.h"
+#include "Includes/spi.h"
 
 void InitPorts()
 {
@@ -30,6 +31,20 @@ void InitPorts()
 	PORT->Group[0].PINCFG[22].bit.PMUXEN = 1;
 	PORT->Group[0].PINCFG[23].bit.PMUXEN = 1;
 	PORT->Group[0].PMUX[11].reg = PORT_PMUX_PMUXE(0x2) | PORT_PMUX_PMUXO(0x2);
+
+	//Init SPI
+	//PB17 SERCOM5/PAD[1] GPIO SS
+	PORT->Group[1].DIR.reg |= PORT_PB17;
+	//PB16 SERCOM5/PAD[0] Multiplex C MISO
+	PORT->Group[1].PINCFG[16].bit.PMUXEN = 1;
+	PORT->Group[1].PMUX[16/2].reg = PORT_PMUX_PMUXE(0x2);
+	//PB22 SERCOM5/PAD[2] Multiplex D MOSI
+	PORT->Group[1].PINCFG[22].bit.PMUXEN = 1;
+	PORT->Group[1].PMUX[22/2].reg = PORT_PMUX_PMUXE(0x3);
+	//PB23 SERCOM5/PAD[3] Multiplex D SCK
+	PORT->Group[1].PINCFG[23].bit.PMUXEN = 1;
+	PORT->Group[1].PMUX[23/2].reg = PORT_PMUX_PMUXO(0x3);
+
 	
 	//Pin PB14 GCLK_IO[0]
 	PORT->Group[1].PINCFG[14].bit.PMUXEN = 1;
@@ -68,15 +83,17 @@ void InitClocks()
 	//Enable Generic Clock 1 to OSCULP32K
 	GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(0x01) | GCLK_GENCTRL_GENEN | GCLK_GENCTRL_SRC_OSCULP32K;
 	
-	//Peripheries with OSC8M (GEN GLCK[0]
+	//Peripheries with OSC8M (GEN GLCK[0])
 	//Clock to SERCOM0 I2C
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM0_CORE;
 	//Clock to SERCOM3 UART
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM3_CORE;
+	//Clock to SERCOM5 SPI
+	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM5_CORE;
 	//Clock to TC3 10msCounter
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_TCC2_TC3;
 	
-	//Peripheries with OSC8M (GEN GLCK[0]
+	//Peripheries with OSCULP32K (GEN GLCK[1])
 	//Clock to EIC
 	GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK1 | GCLK_CLKCTRL_ID_EIC;
 	
@@ -119,6 +136,7 @@ uint8_t InitAll(void)
 	
 	InitI2C();
 	InitUART();
+	InitSPI();
 	
 	InitAB1805();
 	
