@@ -17,6 +17,9 @@ void InitPorts(void);
 void InitClocks(void);
 void InitEIC(void);
 
+void PowerDown(void);
+void PowerUp(void);
+
 void Value2String( int16_t Value, uint8_t *DestPtr, uint8_t Stellen);
 void Delay_ms(uint16_t Milliseconds);
 

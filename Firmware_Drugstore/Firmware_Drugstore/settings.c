@@ -32,19 +32,18 @@ void InitPorts()
 	PORT->Group[0].PINCFG[23].bit.PMUXEN = 1;
 	PORT->Group[0].PMUX[11].reg = PORT_PMUX_PMUXE(0x2) | PORT_PMUX_PMUXO(0x2);
 
-	//Init SPI
-	//PB17 SERCOM5/PAD[1] GPIO SS
-	PORT->Group[1].DIR.reg |= PORT_PB17;
-	//PB16 SERCOM5/PAD[0] Multiplex C MISO
-	PORT->Group[1].PINCFG[16].bit.PMUXEN = 1;
-	PORT->Group[1].PMUX[16/2].reg = PORT_PMUX_PMUXE(0x2);
-	//PB22 SERCOM5/PAD[2] Multiplex D MOSI
-	PORT->Group[1].PINCFG[22].bit.PMUXEN = 1;
-	PORT->Group[1].PMUX[22/2].reg = PORT_PMUX_PMUXE(0x3);
-	//PB23 SERCOM5/PAD[3] Multiplex D SCK
-	PORT->Group[1].PINCFG[23].bit.PMUXEN = 1;
-	PORT->Group[1].PMUX[23/2].reg = PORT_PMUX_PMUXO(0x3);
-
+ 	//Init SPI
+ 	//PB17 SERCOM5/PAD[1] GPIO SS
+ 	PORT->Group[1].DIR.reg |= PORT_PB17;
+ 	//PB16 SERCOM5/PAD[0] Multiplex C MISO
+ 	PORT->Group[1].PINCFG[16].bit.PMUXEN = 1;
+ 	PORT->Group[1].PMUX[16/2].reg = PORT_PMUX_PMUXE(0x2);
+ 	//PB22 SERCOM5/PAD[2] Multiplex D MOSI
+ 	PORT->Group[1].PINCFG[22].bit.PMUXEN = 1;
+ 	PORT->Group[1].PMUX[22/2].reg |= PORT_PMUX_PMUXE(0x3);
+ 	//PB23 SERCOM5/PAD[3] Multiplex D SCK
+ 	PORT->Group[1].PINCFG[23].bit.PMUXEN = 1;
+ 	PORT->Group[1].PMUX[23/2].reg |= PORT_PMUX_PMUXO(0x3);
 	
 	//Pin PB14 GCLK_IO[0]
 	PORT->Group[1].PINCFG[14].bit.PMUXEN = 1;
@@ -120,6 +119,30 @@ void InitEIC(void)
 	while(EIC->STATUS.bit.SYNCBUSY == 1){}
 	
 	EIC->INTENSET.bit.EXTINT11 = 1;
+
+
+}
+
+
+// ---------------------------------------------------------------------------
+//  Power Up: Alles aktivieren nach Sleep
+// ---------------------------------------------------------------------------
+void PowerUp(void)
+{	
+	//SPI SERCOM5
+	PORT->Group[1].PINCFG[22].bit.PMUXEN = 1;
+	PORT->Group[1].PINCFG[23].bit.PMUXEN = 1;
+}
+
+
+// ---------------------------------------------------------------------------
+//  Power Down Stromsparen
+// ---------------------------------------------------------------------------
+void PowerDown(void)
+{
+	//SPI SERCOM5
+	PORT->Group[1].PINCFG[22].bit.PMUXEN = 0;
+	PORT->Group[1].PINCFG[23].bit.PMUXEN = 0;
 }
 
 
@@ -133,6 +156,7 @@ uint8_t InitAll(void)
 	InitEIC();
 	
 	Init10msTimer();
+	UiInit();
 	
 	InitI2C();
 	InitUART();

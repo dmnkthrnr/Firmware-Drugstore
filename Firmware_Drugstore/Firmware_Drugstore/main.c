@@ -16,11 +16,16 @@
 #include "Includes/ui.h"
 
 void enable_interrupts(void);
+void disable_interrupts(void);
 
 int main(void)
 {
 	/* Initialize the SAM system */
 	SystemInit();
+	disable_interrupts();
+	
+	//Alles initialisieren
+	InitAll();
 	
 	enable_interrupts();
 	
@@ -29,14 +34,11 @@ int main(void)
 	/* Replace with your application code */
 	while (1)
 	{
-		//Wait a little bit
 		switch (State)
 		{
 			case STM_START:
-				InitAll();
-				
 				//Set DateTime
-				set_datetime(0x17,0x03,0x24,0x04,0x10,0x14,0x35);
+				set_datetime(0x17,0x03,0x27,0x00,0x10,0x20,0x35);
 					
 				set_seconds_alarm(0x40);
 				set_minutes_alarm(get_minute());
@@ -47,14 +49,20 @@ int main(void)
 				State = STM_IDLE;
 				break;
 				
+			case STM_STARTAFTERSLEEP:
+				PowerUp();
+				State = STM_IDLE;
+				break;
+				
 			case STM_IDLE:
-				//TimerAkt();
  				if (!TimerAkt())
  					State = STM_SLEEP;
 				break;
+				
 			case STM_SLEEP:
-				State = STM_START;
+				PowerDown();
 				gotosleep();
+				State = STM_STARTAFTERSLEEP;
 				break;
 		}
 	}
@@ -65,4 +73,11 @@ void enable_interrupts()
 	NVIC_EnableIRQ(SERCOM3_IRQn);
 	NVIC_EnableIRQ(TC3_IRQn);
 	NVIC_EnableIRQ(EIC_IRQn);
+}
+
+void disable_interrupts()
+{
+	NVIC_DisableIRQ(SERCOM3_IRQn);
+	NVIC_DisableIRQ(TC3_IRQn);
+	NVIC_DisableIRQ(EIC_IRQn);
 }

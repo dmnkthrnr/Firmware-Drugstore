@@ -42,38 +42,28 @@ void Init10msTimer(void)
 // ---------------------------------------------------------------------------
 uint8_t TimerAkt(void)
 {
-	static uint16_t Old10ms=0;
-	static uint8_t buttonstate = 0;
-	static uint16_t gotosleep = 0;
-	
+	static uint16_t Old10ms=0;	
 	
 	//Wenn neue ms
 	if (Old10ms != _10ms)
 	{
 		Old10ms = _10ms;
-		buttonstate = ReadTasten();
-		
-		if (buttonstate == GOTOSLEEP)
-		{
-			gotosleep = 1;	
-		}
-		
 				
 		switch (Old10ms)
 		{
 			case 10:
-				if (gotosleep)
-				{
- 					gotosleep = 0;
-					return (1);
-				}
-				break;						
+				break;			
 			
 			default:
 				break;
 		}
+		
+		if (!ReadTasten())
+		{
+			return (0);
+		}
 	}
-	return 0;
+	return (1);
 }
 
 
