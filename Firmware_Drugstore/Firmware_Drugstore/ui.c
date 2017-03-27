@@ -142,7 +142,9 @@ uint8_t ReadTasten()
 	{
 		TaxState[TA_SW0_NR] = BUTTON_OFF;
 		uart_write((uint8_t*)&"SLEEP",5);
-		return (GOTOSLEEP);
+		__NOP;
+		__NOP;
+		return (0);
 	}
 	
 	return (1);

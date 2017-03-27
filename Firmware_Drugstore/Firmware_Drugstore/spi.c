@@ -35,7 +35,7 @@
 	SERCOM5->SPI.CTRLA.bit.MODE = 0x3;
 
 	//BAUD berechnung: fref/(2*fBaud) -1 ??Nochmals überrüfen!!!!
-	SERCOM0->SPI.BAUD.reg |= SERCOM_SPI_BAUD_BAUD(207); // = 9600 Baud
+	SERCOM5->SPI.BAUD.reg |= SERCOM_SPI_BAUD_BAUD(39); // = 100000
 
 	//Enable SPI
 	SERCOM5->SPI.CTRLA.bit.ENABLE = 1;

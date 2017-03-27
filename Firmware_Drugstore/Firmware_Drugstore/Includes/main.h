@@ -20,8 +20,9 @@
 //  States
 // ---------------------------------------------------------------------------
 #define STM_START					1
-#define STM_IDLE  					2
-#define STM_SLEEP 					3
+#define STM_STARTAFTERSLEEP			2
+#define STM_IDLE  					3
+#define STM_SLEEP 					4
 
 volatile uint8_t State;
 
