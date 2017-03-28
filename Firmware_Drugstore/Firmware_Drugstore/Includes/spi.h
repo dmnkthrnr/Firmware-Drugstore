@@ -12,10 +12,7 @@
 #include "main.h"
 
 void InitSPI(void);
-void write_display_instruction(uint8_t cmd);
-void write_display_data(uint8_t data);
 
-
-
+void spi_write(uint8_t data);
 
 #endif /* SPI_H_ */

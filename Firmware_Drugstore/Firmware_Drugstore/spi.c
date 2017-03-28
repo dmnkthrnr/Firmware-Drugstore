@@ -36,24 +36,23 @@
 
 	//BAUD berechnung: fref/(2*fBaud) -1 ??Nochmals überrüfen!!!!
 	SERCOM5->SPI.BAUD.reg |= SERCOM_SPI_BAUD_BAUD(39); // = 100000
-
+	
 	//Enable SPI
 	SERCOM5->SPI.CTRLA.bit.ENABLE = 1;
 	while (SERCOM5->SPI.SYNCBUSY.bit.ENABLE){}
  }
 
- //-----------------------------------------------------------------------------
- // Write Instruction to Display
- //-----------------------------------------------------------------------------
- void write_display_instruction(uint8_t cmd)
- {
-	 
- }
 
- //-----------------------------------------------------------------------------
- // Write Data to Display
- //-----------------------------------------------------------------------------
- void write_display_data(uint8_t data)
- {
-	 
- }
+//-----------------------------------------------------------------------------
+// Write 1 Byte 
+//-----------------------------------------------------------------------------
+void spi_write(uint8_t data)
+{
+	REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
+	
+	SERCOM5->SPI.DATA.bit.DATA = data;
+	while(SERCOM5->SPI.INTFLAG.bit.TXC == 0){}
+	
+	REG_PORT_OUTSET1 |= DISPLAY_SPI_CHIP_SELECT_PIN;	
+}
+

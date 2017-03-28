@@ -166,10 +166,16 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="display.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="i2c.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Includes\AB1805.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Includes\display.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Includes\i2c.h">

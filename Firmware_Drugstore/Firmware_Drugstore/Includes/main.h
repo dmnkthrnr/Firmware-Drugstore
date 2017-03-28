@@ -30,8 +30,9 @@ volatile uint8_t State;
 // ---------------------------------------------------------------------------
 //  Display Defines
 // ---------------------------------------------------------------------------
-#define DISPLAY_RS_PIN		PORT_PB11
-#define DISPLAY_RESET_PIN	PORT_PB10	
+#define DISPLAY_RS_PIN				PORT_PB11
+#define DISPLAY_RESET_PIN			PORT_PB10	
+#define DISPLAY_SPI_CHIP_SELECT_PIN	PORT_PB17
 
 #define DISPLAY_ON()           write_display_instruction(0xaf)   //  Display on
 #define DISPLAY_OFF()          write_display_instruction(0xae)   //  Display off
@@ -51,7 +52,9 @@ volatile uint8_t State;
 
 #define Start_column	0x00
 #define Start_page		0x00
-#define	StartLine_set	0x00	
+#define	StartLine_set	0x00
+
+volatile uint8_t contrast_level;	
 
 
 
