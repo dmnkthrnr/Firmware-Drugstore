@@ -13,6 +13,7 @@
 #include "Includes/uart.h"
 #include "Includes/AB1805.h"
 #include "Includes/stepper_motor.h"
+#include "Includes/display.h"
 
 
 

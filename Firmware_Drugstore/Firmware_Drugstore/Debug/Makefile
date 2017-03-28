@@ -42,6 +42,7 @@ C_SRCS +=  \
 ../AB1805.c \
 ../Device_Startup/startup_samd21.c \
 ../Device_Startup/system_samd21.c \
+../display.c \
 ../i2c.c \
 ../main.c \
 ../settings.c \
@@ -62,6 +63,7 @@ OBJS +=  \
 AB1805.o \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+display.o \
 i2c.o \
 main.o \
 settings.o \
@@ -75,6 +77,7 @@ OBJS_AS_ARGS +=  \
 AB1805.o \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+display.o \
 i2c.o \
 main.o \
 settings.o \
@@ -88,6 +91,7 @@ C_DEPS +=  \
 AB1805.d \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+display.d \
 i2c.d \
 main.d \
 settings.d \
@@ -101,6 +105,7 @@ C_DEPS_AS_ARGS +=  \
 AB1805.d \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+display.d \
 i2c.d \
 main.d \
 settings.d \
@@ -126,6 +131,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

@@ -14,6 +14,8 @@
 #include "Includes/stepper_motor.h"
 #include "Includes/time.h"
 #include "Includes/ui.h"
+#include "Includes/spi.h"
+#include "Includes/display.h"
 
 void enable_interrupts(void);
 void disable_interrupts(void);
@@ -25,7 +27,7 @@ int main(void)
 	disable_interrupts();
 	
 	//Alles initialisieren
-	InitAll();
+	InitAll(); 
 	
 	enable_interrupts();
 	
@@ -37,6 +39,8 @@ int main(void)
 		switch (State)
 		{
 			case STM_START:
+				//Init Uhr
+				InitAB1805();
 				//Set DateTime
 				set_datetime(0x17,0x03,0x27,0x00,0x10,0x20,0x35);
 					
@@ -46,6 +50,10 @@ int main(void)
 				set_date_alarm(get_date());
 				set_month_alarm(get_month());
 				set_day_alarm(get_day());
+				
+				//Init Display
+				InitDisplay();
+				
 				State = STM_IDLE;
 				break;
 				
@@ -72,12 +80,15 @@ void enable_interrupts()
 {
 	NVIC_EnableIRQ(SERCOM3_IRQn);
 	NVIC_EnableIRQ(TC3_IRQn);
+	NVIC_EnableIRQ(SERCOM5_IRQn);
 	NVIC_EnableIRQ(EIC_IRQn);
+
 }
 
 void disable_interrupts()
 {
 	NVIC_DisableIRQ(SERCOM3_IRQn);
+	NVIC_DisableIRQ(SERCOM5_IRQn);
 	NVIC_DisableIRQ(TC3_IRQn);
 	NVIC_DisableIRQ(EIC_IRQn);
 }
