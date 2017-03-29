@@ -23,4 +23,6 @@ void Power_Control(uint8_t vol);
 void Regulor_Resistor_Select(uint8_t r);
 void Set_Contrast_Control_Register(uint8_t mod);
 
+void display_picture(uint8_t pic[]);
+
 #endif /* DISPLAY_H_ */

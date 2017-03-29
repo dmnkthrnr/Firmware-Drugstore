@@ -154,6 +154,10 @@ uint8_t ReadTasten()
 // ---------------------------------------------------------------------------
 void gotosleep()
 {
+	//wait until Communication is complete
+	while (SERCOM3->USART.INTFLAG.bit.TXC == 0){}
+	
+	//Standby Mode
 	SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
 	__DSB();
 	__WFI();
