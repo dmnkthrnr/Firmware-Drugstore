@@ -8,6 +8,7 @@
 #include "Includes/main.h"
 #include "Includes/display.h"
 #include "Includes/spi.h"
+#include "Includes/settings.h"
 
  //-----------------------------------------------------------------------------
  // Write Instruction to Display
@@ -44,7 +45,7 @@
 	REG_PORT_OUTSET1 |= DISPLAY_RESET_PIN;
 
 	Delay_ms(1000);
-	//REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
+	REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
     CLEAR_ADC();
     SET_SHL();
     CLEAR_BIAS();
@@ -115,4 +116,22 @@ void Set_Contrast_Control_Register(uint8_t mod)
 {
     write_display_instruction(0x81);
 	write_display_instruction(mod);
+}
+
+
+void display_picture(uint8_t pic[])
+{
+	uint8_t i;
+	uint8_t j;
+	
+	Initial_Dispay_Line(0x40);
+	for (i=0;i<0x8;i++)
+	{
+		Set_Page_Address(i);
+		Set_Column_Address(0x00);
+		for (j=0;j<0x80;j++)
+		{
+			write_display_data(pic[i*0x80+j]);
+		}
+	}
 }

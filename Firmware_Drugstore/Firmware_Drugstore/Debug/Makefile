@@ -44,6 +44,7 @@ C_SRCS +=  \
 ../Device_Startup/system_samd21.c \
 ../display.c \
 ../i2c.c \
+../lut.c \
 ../main.c \
 ../settings.c \
 ../spi.c \
@@ -65,6 +66,7 @@ Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
 display.o \
 i2c.o \
+lut.o \
 main.o \
 settings.o \
 spi.o \
@@ -79,6 +81,7 @@ Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
 display.o \
 i2c.o \
+lut.o \
 main.o \
 settings.o \
 spi.o \
@@ -93,6 +96,7 @@ Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
 display.d \
 i2c.d \
+lut.d \
 main.d \
 settings.d \
 spi.d \
@@ -107,6 +111,7 @@ Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
 display.d \
 i2c.d \
+lut.d \
 main.d \
 settings.d \
 spi.d \
@@ -131,6 +136,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

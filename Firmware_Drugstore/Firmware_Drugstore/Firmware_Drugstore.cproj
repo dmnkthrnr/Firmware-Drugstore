@@ -181,6 +181,9 @@
     <Compile Include="Includes\i2c.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Includes\lut.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Includes\main.h">
       <SubType>compile</SubType>
     </Compile>
@@ -200,6 +203,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Includes\ui.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lut.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">

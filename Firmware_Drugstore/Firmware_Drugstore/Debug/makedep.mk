@@ -12,6 +12,8 @@ display.c
 
 i2c.c
 
+lut.c
+
 main.c
 
 settings.c
