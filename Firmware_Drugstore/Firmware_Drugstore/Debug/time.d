@@ -94,7 +94,8 @@ time.d time.o: .././time.c .././Includes/main.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\5.3.1\include\stdbool.h \
  .././Includes/time.h .././Includes/main.h .././Includes/i2c.h \
  .././Includes/ui.h .././Includes/uart.h .././Includes/AB1805.h \
- .././Includes/stepper_motor.h .././Includes/display.h
+ .././Includes/stepper_motor.h .././Includes/display.h \
+ .././Includes/lut.h
 
 .././Includes/main.h:
 
@@ -299,3 +300,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gc
 .././Includes/stepper_motor.h:
 
 .././Includes/display.h:
+
+.././Includes/lut.h:

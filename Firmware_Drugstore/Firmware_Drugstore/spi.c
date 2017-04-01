@@ -35,7 +35,7 @@
 	SERCOM5->SPI.CTRLA.bit.MODE = 0x3;
 
 	//BAUD berechnung: fref/(2*fBaud) -1 ??Nochmals überrüfen!!!!
-	SERCOM5->SPI.BAUD.reg |= SERCOM_SPI_BAUD_BAUD(39); // = 100000
+	SERCOM5->SPI.BAUD.reg |= SERCOM_SPI_BAUD_BAUD(10); // = 100000
 	
 	//Enable SPI
 	SERCOM5->SPI.CTRLA.bit.ENABLE = 1;
@@ -48,11 +48,13 @@
 //-----------------------------------------------------------------------------
 void spi_write(uint8_t data)
 {
-	REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
+	REG_PORT_OUT1 &= ~(1<<DISPLAY_CS_PIN_NUM);
+	//REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
 	
 	SERCOM5->SPI.DATA.bit.DATA = data;
 	while(SERCOM5->SPI.INTFLAG.bit.TXC == 0){}
 	
-	REG_PORT_OUTSET1 |= DISPLAY_SPI_CHIP_SELECT_PIN;	
+	REG_PORT_OUT1 |= (1<<DISPLAY_CS_PIN_NUM);
+	//REG_PORT_OUTSET1 |= DISPLAY_SPI_CHIP_SELECT_PIN;	
 }
 

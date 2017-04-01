@@ -53,11 +53,12 @@ int main(void)
 				set_day_alarm(get_day());
 				
 				//Init Display
-				REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
+				
 				InitDisplay();
-				Delay_ms(1000);
+				Delay_ms(1000); //ca 2,5ms
 				REVERSE_DISPLAY_OFF();
 				ENTIRE_DISPLAY_OFF();
+				//ENTIRE_DISPLAY_ON();
 				display_picture(pic);
 				
 				State = STM_IDLE;

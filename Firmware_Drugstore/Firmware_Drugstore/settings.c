@@ -48,7 +48,8 @@ void InitPorts()
 	 
 	 //Display Pins set as OUTPUT (RESET = PB10 & RS = PB11)
 	 PORT->Group[1].DIR.reg |= DISPLAY_RESET_PIN | DISPLAY_RS_PIN;
-	 PORT->Group[1].OUTCLR.reg |= DISPLAY_RESET_PIN;
+	 PORT->Group[1].OUT.reg &= ~(1<<DISPLAY_RESET_PIN_NUM);
+	 //PORT->Group[1].OUT.reg |= (1<<DISPLAY_RESET_PIN_NUM);
 	
 	//Pin PB14 GCLK_IO[0]
 	PORT->Group[1].PINCFG[14].bit.PMUXEN = 1;

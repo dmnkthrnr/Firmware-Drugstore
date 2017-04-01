@@ -12,6 +12,7 @@
 #include "main.h"
 
 extern uint8_t pic[];
+extern uint8_t pic2[];
 
 
 #endif /* LUT_H_ */
