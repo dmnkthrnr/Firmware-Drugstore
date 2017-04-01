@@ -34,6 +34,10 @@ volatile uint8_t State;
 #define DISPLAY_RESET_PIN			PORT_PB10	
 #define DISPLAY_SPI_CHIP_SELECT_PIN	PORT_PB17
 
+#define DISPLAY_RESET_PIN_NUM		10
+#define DISPLAY_RS_PIN_NUM			11
+#define DISPLAY_CS_PIN_NUM			17
+
 #define DISPLAY_ON()           write_display_instruction(0xaf)   //  Display on
 #define DISPLAY_OFF()          write_display_instruction(0xae)   //  Display off
 #define SET_ADC()              write_display_instruction(0xa1)   //  Reverse disrect (SEG131-SEG0)

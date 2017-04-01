@@ -15,7 +15,8 @@
  //-----------------------------------------------------------------------------
  void write_display_instruction(uint8_t cmd)
  {
-	 REG_PORT_OUTCLR1 |= DISPLAY_RS_PIN;
+	 REG_PORT_OUT1 &= ~(1<<DISPLAY_RS_PIN_NUM);
+	 //REG_PORT_OUTCLR1 |= DISPLAY_RS_PIN;
 	 spi_write(cmd);
  }
 
@@ -24,10 +25,9 @@
  //-----------------------------------------------------------------------------
  void write_display_data(uint8_t data)
  {
-	 REG_PORT_OUTSET1 |= DISPLAY_RS_PIN;
+	REG_PORT_OUT1 |= (1<<DISPLAY_RS_PIN_NUM);
+	 //REG_PORT_OUTSET1 |= DISPLAY_RS_PIN;
 	 spi_write(data);
-	 
-	 
  }
 
  //-----------------------------------------------------------------------------
@@ -38,14 +38,13 @@
 	contrast_level = 14;
 	
 	RESET(); 
-	REG_PORT_OUTSET1 |= DISPLAY_RESET_PIN;
+	REG_PORT_OUT1 |= (1<<DISPLAY_RESET_PIN_NUM);
 	Delay_ms(200);
-	REG_PORT_OUTCLR1 |= DISPLAY_RESET_PIN;
+	REG_PORT_OUT1 &= ~(1<<DISPLAY_RESET_PIN_NUM);
 	Delay_ms(200);
-	REG_PORT_OUTSET1 |= DISPLAY_RESET_PIN;
+ 	REG_PORT_OUT1 |= (1<<DISPLAY_RESET_PIN_NUM);
 
-	Delay_ms(1000);
-	REG_PORT_OUTCLR1 |= DISPLAY_SPI_CHIP_SELECT_PIN;
+	Delay_ms(200);
     CLEAR_ADC();
     SET_SHL();
     CLEAR_BIAS();
