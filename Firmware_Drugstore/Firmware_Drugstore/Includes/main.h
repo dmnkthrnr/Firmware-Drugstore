@@ -25,7 +25,7 @@
 #define STM_SLEEP 					4
 
 volatile uint8_t State;
-
+volatile uint8_t DisplayState;
 
 // ---------------------------------------------------------------------------
 //  Display Defines
@@ -54,13 +54,25 @@ volatile uint8_t State;
 #define SET_SHL()              write_display_instruction(0xc8)   // SHL 1,COM63-COM0
 #define CLEAR_SHL()            write_display_instruction(0xc0)   // SHL 0,COM0-COM63
 
-#define Start_column	0x00
-#define Start_page		0x00
-#define	StartLine_set	0x00
+#define START_COLUMN	0x00
+#define START_PAGE		0x00
+#define	STARTLINE_SET	0x00
 
-volatile uint8_t contrast_level;	
+volatile uint8_t contrast_level;
 
+// ---------------------------------------------------------------------------
+//  Display Strings
+// ---------------------------------------------------------------------------
+#define DATESTRING	8,0
+#define TIMESTRING	8,9
+#define TEXTSTRING	100,0	
 
+// ---------------------------------------------------------------------------
+//  Display States
+// ---------------------------------------------------------------------------
+#define DISPLAY_IDLE			0
+#define DISPLAY_MENUE			1
+#define DISPLAY_SET_DATETIME	2
 
 //-----------------------------------------------------------------------------
 // Settings Defines

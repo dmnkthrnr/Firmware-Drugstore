@@ -9,6 +9,7 @@
 #include "Includes/display.h"
 #include "Includes/spi.h"
 #include "Includes/settings.h"
+#include "Includes/lut.h"
 
  //-----------------------------------------------------------------------------
  // Write Instruction to Display
@@ -117,7 +118,9 @@ void Set_Contrast_Control_Register(uint8_t mod)
 	write_display_instruction(mod);
 }
 
-
+//-----------------------------------------------------------------------------
+// Send Picture to Display (whole Display!)
+//-----------------------------------------------------------------------------
 void display_picture(uint8_t pic[])
 {
 	uint8_t i;
@@ -133,4 +136,82 @@ void display_picture(uint8_t pic[])
 			write_display_data(pic[i*0x80+j]);
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Write Text on Display
+//-----------------------------------------------------------------------------
+void Write_text(uint8_t *data, uint8_t line, uint8_t column, uint8_t len, uint8_t start)
+{
+	data += start;
+	for (uint8_t j = 0; (*data != '\0') && (j<len); j++)
+	{
+		Initial_Dispay_Line(0x00);
+		Set_Column_Address((column+j)*8);
+		Set_Page_Address(line);
+		for(uint8_t i = 1; i<16; i+=2)
+		{
+			write_display_data(font[(*(data)-32)*16+i]);
+		}
+		
+		Set_Page_Address(line+1);
+		Set_Column_Address((column+j)*8);
+		for(uint8_t i = 0; i<17; i+=2)
+		{
+			write_display_data(font[(*(data)-32)*16+i]);
+		}
+		data++;	
+	}		
+}
+
+//-----------------------------------------------------------------------------
+// Clear Display
+//-----------------------------------------------------------------------------
+void clear_display(void)
+{
+	uint8_t i;
+	uint8_t j;
+	
+	Initial_Dispay_Line(0x40);
+	for (i=0;i<0x8;i++)
+	{
+		Set_Page_Address(i);
+		Set_Column_Address(0x00);
+		for (j=0;j<0x80;j++)
+		{
+			write_display_data(0x00);
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Display STM
+//-----------------------------------------------------------------------------
+uint8_t ChangeDisplaySate(void)
+{
+	switch(DisplayState)
+	{
+		case DISPLAY_IDLE:
+			get_date_string();
+			Write_text((uint8_t*)"DrugStore",0,3, TEXTSTRING);
+			Write_text((uint8_t*)&DateString,2,4, DATESTRING);
+			Write_text((uint8_t*)&DateString,4,4, TIMESTRING);
+			break;
+
+		case DISPLAY_MENUE:
+			break;
+
+		case DISPLAY_SET_DATETIME:
+			break;
+
+		default:
+			clear_display();
+			get_date_string();
+			Write_text((uint8_t*)"DrugStore",0,3, TEXTSTRING);
+			Write_text((uint8_t*)&DateString,2,4, DATESTRING);
+			Write_text((uint8_t*)&DateString,4,4, TIMESTRING);
+			return (1);
+			break;
+	}
+	return (0);
 }

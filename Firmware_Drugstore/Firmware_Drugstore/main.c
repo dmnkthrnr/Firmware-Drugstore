@@ -40,10 +40,11 @@ int main(void)
 		switch (State)
 		{
 			case STM_START:
+				DisplayState = DISPLAY_IDLE;
 				//Init Uhr
 				InitAB1805();
 				//Set DateTime
-				set_datetime(0x17,0x03,0x29,0x03,0x10,0x19,0x35);
+				set_datetime(0x17,0x04,0x06,0x00,0x22,0x40,0x45);
 					
 				set_seconds_alarm(0x40);
 				set_minutes_alarm(get_minute());
@@ -53,14 +54,13 @@ int main(void)
 				set_day_alarm(get_day());
 				
 				//Init Display
-				
 				InitDisplay();
 				Delay_ms(1000); //ca 2,5ms
 				REVERSE_DISPLAY_OFF();
 				ENTIRE_DISPLAY_OFF();
-				//ENTIRE_DISPLAY_ON();
-				display_picture(pic);
-				
+
+				clear_display();
+		
 				State = STM_IDLE;
 				break;
 				
