@@ -14,5 +14,7 @@
 extern uint8_t pic[];
 extern uint8_t pic2[];
 
+extern uint8_t num[];
+extern uint8_t font[];
 
 #endif /* LUT_H_ */

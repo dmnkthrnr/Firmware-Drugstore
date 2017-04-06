@@ -53,17 +53,9 @@ uint8_t TimerAkt(void)
 				
 		switch (Old10ms)
 		{
-			case 10:
-				if (Sekunde == 4)
-				{
-					display_picture(pic2);
-					Sekunde =0;
-				}
-				else
-				{	
-					display_picture(pic);
-				}
-				
+			case 0:
+				DisplayState = DISPLAY_IDLE;
+				ChangeDisplaySate();
 				break;			
 			
 			default:

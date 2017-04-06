@@ -10,6 +10,7 @@
 #include "Includes/ui.h"
 #include "Includes/AB1805.h"
 #include "Includes/uart.h"
+#include "Includes/display.h"
 
 
 // ---------------------------------------------------------------------------
@@ -141,7 +142,7 @@ uint8_t ReadTasten()
 	if (TaxState[TA_SW0_NR] == BUTTON_2S_DONE)
 	{
 		TaxState[TA_SW0_NR] = BUTTON_OFF;
-		uart_write((uint8_t*)&"SLEEP",5);
+		Write_text((uint8_t*)&"SLEEP",1,3,TEXTSTRING);
 		return (0);
 	}
 	

@@ -24,5 +24,9 @@ void Regulor_Resistor_Select(uint8_t r);
 void Set_Contrast_Control_Register(uint8_t mod);
 
 void display_picture(uint8_t pic[]);
+void clear_display(void);
+void Write_text(uint8_t *data, uint8_t line, uint8_t column, uint8_t len, uint8_t start);
+
+uint8_t ChangeDisplaySate(void);
 
 #endif /* DISPLAY_H_ */
